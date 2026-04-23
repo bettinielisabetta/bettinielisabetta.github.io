@@ -1,214 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elisabetta Bettini</title>
 
-  <!-- Icone -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin: 0;
-    background-color: #f9fafb;
-    color: #1f2937;
-  }
+    :root {
+      --bg: #f8f9fb;
+      --white: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --line: #d9dde4;
+      --purple: #7c3aed;
+      --shadow: 0 10px 28px rgba(0,0,0,0.08);
+    }
 
-  .container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 60px 40px;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
-  }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-  .hero-text {
-    max-width: 550px;
-  }
+    .page {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 56px 68px;
+    }
 
-  h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-  }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 80px;
+      align-items: start;
+      min-height: 430px;
+    }
 
-  .subtitle {
-    font-size: 20px;
-    color: #6b7280;
-    margin-bottom: 20px;
-  }
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.05;
+      margin: 0 0 18px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
 
-  img {
-    width: 220px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
+    .subtitle {
+      font-size: 28px;
+      line-height: 1.25;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 720px;
+      font-weight: 500;
+    }
 
-  .section {
-    margin-top: 70px;
-  }
+    .bio {
+      font-size: 21px;
+      line-height: 1.48;
+      max-width: 790px;
+      margin: 0;
+    }
 
-  h2 {
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      padding-top: 0;
+    }
 
-  a {
-    color: #7c3aed;
-    text-decoration: none;
-    transition: 0.2s;
-  }
+    .profile-photo {
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      background: white;
+      border: 14px solid white;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.15);
+    }
 
-  a:hover {
-    opacity: 0.7;
-  }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 56px;
+      margin-top: 20px;
+    }
 
-  .contact i {
-    margin-right: 10px;
-    color: #7c3aed;
-  }
+    h2 {
+      font-size: 34px;
+      margin: 0 0 14px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
 
-    .project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
+    .section-line {
+      border-bottom: 2px solid var(--line);
+      margin-bottom: 22px;
+    }
 
-.project-card {
-  display: block;
-  background: white;
-  padding: 24px;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  text-decoration: none;
-  color: #1f2937;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    .about-links {
+      padding-top: 10px;
+    }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.10);
-}
+    .about-link {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--purple);
+      text-decoration: none;
+      font-size: 20px;
+      margin: 28px 0;
+      font-weight: 500;
+    }
 
-.project-card h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #1f2937;
-}
+    .about-link i {
+      width: 32px;
+      font-size: 30px;
+      text-align: center;
+    }
 
-.project-card p {
-  color: #6b7280;
-  line-height: 1.5;
-}
+    .read-more {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--purple);
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+    }
 
-.project-card span {
-  display: inline-block;
-  margin-top: 10px;
-  color: #7c3aed;
-  font-size: 14px;
-  font-weight: 600;
-}
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
 
-@media (max-width: 750px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+    .project-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 22px;
+      min-height: 350px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .project-icon {
+      color: var(--purple);
+      font-size: 76px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .project-card h3 {
+      font-size: 20px;
+      line-height: 1.28;
+      margin: 0 0 14px;
+      font-weight: 800;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.43;
+      margin: 0 0 22px;
+    }
+
+    .project-card span {
+      color: var(--purple);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 44px;
+    }
+
+    .lower-box h2 {
+      margin-bottom: 12px;
+    }
+
+    .lower-box a,
+    .lower-box p {
+      color: var(--purple);
+      font-size: 19px;
+      text-decoration: none;
+    }
+
+    .contact-item {
+      color: var(--text) !important;
+      margin: 14px 0;
+    }
+
+    .contact-item i {
+      color: var(--purple);
+      margin-right: 12px;
+      width: 22px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .content-grid,
+      .lower-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .profile-photo {
+        width: 280px;
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .page {
+        padding: 34px 24px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .subtitle {
+        font-size: 22px;
+      }
+
+      .bio {
+        font-size: 18px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="page">
 
-<div class="container">
+    <section class="hero">
+      <div>
+        <h1>Elisabetta Bettini</h1>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-text">
-      <h1>Elisabetta Bettini</h1>
-      <div class="subtitle">
-        Mechanical Engineer — Structural Dynamics, FEM & Experimental Analysis
+        <div class="subtitle">
+          Mechanical Engineer — Structural Dynamics, FEM &<br>
+          Experimental Analysis
+        </div>
+
+        <p class="bio">
+          Mechanical Engineer specializing in structural dynamics, mechanism design,
+          and high-fidelity FEM modeling, currently at NASA Jet Propulsion Laboratory.
+          Background includes design, kinematic and singularity analysis of multi-DoF
+          linkages, hyperelastic FEM modeling of soft robotic components, and actuator
+          sizing via simulation under worst-case loading conditions. Experienced in
+          mechanical prototyping and hardware integration, including sensors and
+          actuators, as well as modal analysis and FEM–experimental correlation for
+          precision mechanical systems.
+        </p>
       </div>
-      <p>
-        Mechanical Engineer specializing in structural dynamics, mechanism design, and high-fidelity FEM modeling,
-currently at NASA Jet Propulsion Laboratory. Background includes design, kinematic and singularity analysis
-of multi-DoF linkages, hyperelastic FEM modeling of soft robotic components, and actuator sizing via simulation
-under worst-case loading conditions. Experienced in mechanical prototyping and hardware integration,
-including sensors and actuators, as well as modal analysis and FEM–experimental correlation for precision
-mechanical systems.
-      </p>
-    </div>
 
-    <img src="assets/images/profile.jpg">
-  </div>
+      <div class="photo-wrap">
+        <img class="profile-photo" src="assets/images/profile.jpg" alt="Elisabetta Bettini profile photo">
+      </div>
+    </section>
 
-  <!-- ABOUT -->
-<div class="section">
-  <h2>About</h2>
+    <section class="content-grid">
 
-  <p><a href="education.md">🎓 Education</a></p>
-  <p><a href="experience.md">💼 Experience</a></p>
-  <p><a href="tools.md">🛠 Tools</a></p>
+      <div class="about">
+        <h2>About</h2>
+        <div class="section-line"></div>
 
-  <p>
-    <a href="about.md">Read more →</a>
-  </p>
-</div>
+        <div class="about-links">
+          <a class="about-link" href="education.md">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Education</span>
+          </a>
 
-  <!-- PROJECTS -->
-<div class="section">
-  <h2>Projects</h2>
+          <a class="about-link" href="experience.md">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Experience</span>
+          </a>
 
-  <div class="project-grid">
+          <a class="about-link" href="tools.md">
+            <i class="fa-solid fa-wrench"></i>
+            <span>Tools</span>
+          </a>
 
-    <a class="project-card" href="projects/telescope.md">
-      <h3>Segmented Telescope Structural Analysis</h3>
-      <p>Structural dynamics, FEM modeling, modal analysis, and experimental correlation.</p>
-      <span>FEM · Modal Analysis · Testing</span>
-    </a>
+          <a class="read-more" href="about.md">Read more about me →</a>
+        </div>
+      </div>
 
-    <a class="project-card" href="projects/haptic.md">
-      <h3>Haptic Interface for Teleoperation</h3>
-      <p>Mechanism design, kinematic analysis, singularity study, and actuator sizing.</p>
-      <span>Mechanisms · MATLAB · Prototyping</span>
-    </a>
+      <div class="projects">
+        <h2>Projects</h2>
+        <div class="section-line"></div>
 
-    <a class="project-card" href="projects/svej.md">
-      <h3>SVEJ Joint</h3>
-      <p>Mechanical joint design and analysis for compact articulated systems.</p>
-      <span>Joint Design · CAD · Mechanisms</span>
-    </a>
+        <div class="projects-grid">
 
-    <a class="project-card" href="projects/image-segmentation.md">
-      <h3>Image Segmentation & Classification</h3>
-      <p>Image processing and supervised classification of historical manuscripts.</p>
-      <span>Image Processing · Classification · MATLAB/Python</span>
-    </a>
+          <a class="project-card" href="projects/telescope.md">
+            <div>
+              <div class="project-icon">
+                <i class="fa-solid fa-satellite-dish"></i>
+              </div>
+              <h3>Segmented Telescope Structural Analysis</h3>
+              <p>Structural dynamics, FEM modeling, modal analysis, and experimental correlation.</p>
+            </div>
+            <span>View project →</span>
+          </a>
 
-  </div>
-</div>
+          <a class="project-card" href="projects/haptic.md">
+            <div>
+              <div class="project-icon">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <h3>Haptic Interface for Teleoperation</h3>
+              <p>Mechanism design, kinematic analysis, singularity study, and actuator sizing.</p>
+            </div>
+            <span>View project →</span>
+          </a>
 
-  <!-- CV -->
-  <div class="section">
-    <h2>CV</h2>
-    <p><a href="#">Download CV</a></p>
-  </div>
+          <a class="project-card" href="projects/svej.md">
+            <div>
+              <div class="project-icon">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+              <h3>SVEJ Joint</h3>
+              <p>Mechanical joint design and analysis for compact articulated systems.</p>
+            </div>
+            <span>View project →</span>
+          </a>
 
-  <!-- CONTACT -->
-  <div class="section contact">
-    <h2>Contact</h2>
+          <a class="project-card" href="projects/image-segmentation.md">
+            <div>
+              <div class="project-icon">
+                <i class="fa-solid fa-desktop"></i>
+              </div>
+              <h3>Image Segmentation & Classification</h3>
+              <p>Image processing and supervised classification of historical manuscripts.</p>
+            </div>
+            <span>View project →</span>
+          </a>
 
-    <p><i class="fas fa-envelope"></i> be.bettinielisabetta@gmail.com</p>
-    <p><i class="fab fa-linkedin"></i> linkedin.com/in/elisabetta-bettini</p>
+        </div>
+      </div>
 
-  </div>
+    </section>
 
-</div>
+    <section class="lower-grid">
 
+      <div class="lower-box">
+        <h2>CV</h2>
+        <div class="section-line"></div>
+        <p><a href="assets/cv.pdf" download>Download CV</a></p>
+      </div>
+
+      <div class="lower-box">
+        <h2>Contact</h2>
+        <div class="section-line"></div>
+
+        <p class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          be.bettinielisabetta@gmail.com
+        </p>
+
+        <p class="contact-item">
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://www.linkedin.com/in/elisabetta-bettini/" target="_blank">
+            linkedin.com/in/elisabetta-bettini
+          </a>
+        </p>
+      </div>
+
+    </section>
+
+  </main>
 </body>
 </html>
