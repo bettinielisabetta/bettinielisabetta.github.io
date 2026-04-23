@@ -73,6 +73,53 @@
     margin-right: 10px;
     color: #7c3aed;
   }
+
+    .project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.project-card {
+  display: block;
+  background: white;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #1f2937;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.project-card p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.project-card span {
+  display: inline-block;
+  margin-top: 10px;
+  color: #7c3aed;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 750px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 
@@ -114,15 +161,37 @@ mechanical systems.
 </div>
 
   <!-- PROJECTS -->
-  <div class="section">
-    <h2>Projects</h2>
+<div class="section">
+  <h2>Projects</h2>
 
-    <p><a href="projects/telescope.md">Segmented Telescope Structural Analysis</a></p>
-    <p><a href="projects/haptic.md">Haptic Interface for Teleoperation</a></p>
-    <p><a href="projects/svej.md">SVEJ Joint</a></p>
-    <p><a href="projects/image-segmentation.md">Image Segmentation</a></p>
+  <div class="project-grid">
+
+    <a class="project-card" href="projects/telescope.md">
+      <h3>Segmented Telescope Structural Analysis</h3>
+      <p>Structural dynamics, FEM modeling, modal analysis, and experimental correlation.</p>
+      <span>FEM · Modal Analysis · Testing</span>
+    </a>
+
+    <a class="project-card" href="projects/haptic.md">
+      <h3>Haptic Interface for Teleoperation</h3>
+      <p>Mechanism design, kinematic analysis, singularity study, and actuator sizing.</p>
+      <span>Mechanisms · MATLAB · Prototyping</span>
+    </a>
+
+    <a class="project-card" href="projects/svej.md">
+      <h3>SVEJ Joint</h3>
+      <p>Mechanical joint design and analysis for compact articulated systems.</p>
+      <span>Joint Design · CAD · Mechanisms</span>
+    </a>
+
+    <a class="project-card" href="projects/image-segmentation.md">
+      <h3>Image Segmentation & Classification</h3>
+      <p>Image processing and supervised classification of historical manuscripts.</p>
+      <span>Image Processing · Classification · MATLAB/Python</span>
+    </a>
 
   </div>
+</div>
 
   <!-- CV -->
   <div class="section">
