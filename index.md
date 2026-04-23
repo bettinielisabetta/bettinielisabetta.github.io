@@ -10,7 +10,7 @@ Mechanical Engineer — Structural Dynamics, FEM & Experimental Analysis
 
 ## Projects  
 
-### Segmented Telescope Structural Analysis  
+### [Segmented Telescope Structural Analysis](projects/telescope.html)
 Modal analysis, FEM modeling, and numerical–experimental correlation of a precision optical system.
 
 ### Haptic Interface for Teleoperation  
