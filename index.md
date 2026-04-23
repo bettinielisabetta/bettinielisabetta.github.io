@@ -4,8 +4,7 @@ Mechanical Engineer — Structural Dynamics, FEM & Experimental Analysis
 ---
 
 ## About  
-Mechanical engineer with experience in structural dynamics, high-fidelity FEM modeling, and experimental analysis.  
-Interested in the intersection between engineering, motion, and complex systems.
+[Learn more about me](about.html)
 
 ---
 
