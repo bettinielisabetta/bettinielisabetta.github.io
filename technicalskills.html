@@ -27,7 +27,7 @@ body {
 .page {
   max-width: 1100px;
   margin: auto;
-  padding: 48px 48px;
+  padding: 48px;
 }
 
 h1 {
@@ -37,7 +37,7 @@ h1 {
 
 h2 {
   font-size: 28px;
-  margin-top: 40px;
+  margin-top: 42px;
   margin-bottom: 10px;
 }
 
@@ -71,7 +71,6 @@ h2 {
     0 12px 30px rgba(124,58,237,0.14);
 }
 
-/* HEADER */
 .skill-title {
   font-size: 18px;
   font-weight: 600;
@@ -85,7 +84,6 @@ h2 {
   color: var(--purple);
 }
 
-/* LIST */
 .skill-list {
   font-size: 15px;
   color: #374151;
@@ -96,7 +94,7 @@ h2 {
   display: block;
 }
 
-/* SOFTWARE TAGS */
+/* TAGS */
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -110,22 +108,110 @@ h2 {
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s ease;
 }
 
-.tag:hover {
-  background: rgba(124,58,237,0.18);
+/* LANGUAGES */
+.languages-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.language-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px 22px;
+  border: 1px solid rgba(124,58,237,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.22s ease;
+}
+
+.language-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124,58,237,0.25);
+  box-shadow:
+    0 0 0 4px rgba(124,58,237,0.05),
+    0 12px 30px rgba(124,58,237,0.14);
+}
+
+.language-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.flag {
+  width: 34px;
+  height: 23px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.language-name {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.language-level {
+  color: var(--muted);
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.certification-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(124,58,237,0.06);
+  border: 1px solid rgba(124,58,237,0.12);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.certification-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 6px;
+}
+
+.certification-title {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.certification-detail {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 /* BACK */
 .back {
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .back a {
   color: var(--purple);
   text-decoration: none;
   font-weight: 600;
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 34px 24px;
+  }
+
+  .certification-box {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -140,125 +226,173 @@ h2 {
 <!-- TECHNICAL SKILLS -->
 <div class="skills-grid">
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-wave-square"></i>
-    Structural Dynamics & FEM
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-wave-square"></i>
+      Structural Dynamics & FEM
+    </div>
+    <div class="skill-list">
+      <span>Modal analysis</span>
+      <span>High-fidelity FEM modeling</span>
+      <span>Model correlation (FEM ↔ experimental)</span>
+      <span>Reduced-order modeling</span>
+    </div>
   </div>
-  <div class="skill-list">
-    <span>Modal analysis</span>
-    <span>High-fidelity FEM modeling</span>
-    <span>Model correlation (FEM ↔ experimental)</span>
-    <span>Reduced-order modeling</span>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-gears"></i>
+      Mechanical Design
+    </div>
+    <div class="skill-list">
+      <span>Mechanism design</span>
+      <span>Singularity analysis</span>
+      <span>Actuator sizing</span>
+      <span>Hardware prototyping</span>
+    </div>
   </div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-chart-line"></i>
+      Data & Signal Analysis
+    </div>
+    <div class="skill-list">
+      <span>PSD, FRF, coherence analysis</span>
+      <span>Experimental data processing</span>
+      <span>Sensor data interpretation</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-flask"></i>
+      Experimental Testing
+    </div>
+    <div class="skill-list">
+      <span>Modal testing</span>
+      <span>Hammer tests</span>
+      <span>DAQ systems</span>
+      <span>Accelerometer-based measurements</span>
+    </div>
+  </div>
+
 </div>
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-gears"></i>
-    Mechanical Design
-  </div>
-  <div class="skill-list">
-    <span>Mechanism design (multi-DoF systems)</span>
-    <span>Singularity analysis</span>
-    <span>Actuator sizing</span>
-    <span>Hardware prototyping</span>
-  </div>
-</div>
-
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-chart-line"></i>
-    Data & Signal Analysis
-  </div>
-  <div class="skill-list">
-    <span>PSD, FRF, coherence analysis</span>
-    <span>Experimental data processing</span>
-    <span>Sensor data interpretation</span>
-  </div>
-</div>
-
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-flask"></i>
-    Experimental Testing
-  </div>
-  <div class="skill-list">
-    <span>Modal testing (hammer tests)</span>
-    <span>DAQ systems</span>
-    <span>Accelerometer-based measurements</span>
-  </div>
-</div>
-
-</div>
-
-<!-- SOFTWARE SECTION -->
+<!-- SOFTWARE -->
 <h2>Software & Tools</h2>
 <div class="line"></div>
 
 <div class="skills-grid">
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-chart-line"></i>
-    Simulation & Analysis
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-chart-line"></i>
+      Simulation & Analysis
+    </div>
+    <div class="tags">
+      <div class="tag">Abaqus</div>
+      <div class="tag">Ansys Workbench</div>
+      <div class="tag">Ansys APDL</div>
+      <div class="tag">MATLAB</div>
+      <div class="tag">Simulink</div>
+      <div class="tag">Mathcad</div>
+    </div>
   </div>
-  <div class="tags">
-    <div class="tag">Abaqus</div>
-    <div class="tag">Ansys Workbench</div>
-    <div class="tag">Ansys APDL</div>
-    <div class="tag">MATLAB</div>
-    <div class="tag">Simulink</div>
-    <div class="tag">Mathcad</div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-cube"></i>
+      Mechanical Design
+    </div>
+    <div class="tags">
+      <div class="tag">SolidWorks</div>
+      <div class="tag">PTC Creo</div>
+      <div class="tag">Autodesk Inventor</div>
+    </div>
   </div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-pen-nib"></i>
+      Graphics & Visualization
+    </div>
+    <div class="tags">
+      <div class="tag">Adobe Illustrator</div>
+      <div class="tag">Adobe InDesign</div>
+      <div class="tag">SketchBook Pro</div>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-video"></i>
+      Audio / Video
+    </div>
+    <div class="tags">
+      <div class="tag">Melodyne</div>
+      <div class="tag">Premiere Pro</div>
+      <div class="tag">After Effects</div>
+      <div class="tag">Movavi</div>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-title">
+      <i class="fa-solid fa-file-word"></i>
+      Other
+    </div>
+    <div class="tags">
+      <div class="tag">Microsoft Office</div>
+    </div>
+  </div>
+
 </div>
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-cube"></i>
-    Mechanical Design
-  </div>
-  <div class="tags">
-    <div class="tag">SolidWorks</div>
-    <div class="tag">PTC Creo</div>
-    <div class="tag">Autodesk Inventor</div>
-  </div>
-</div>
+<!-- LANGUAGES -->
+<h2>Languages & Certifications</h2>
+<div class="line"></div>
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-pen-nib"></i>
-    Graphics & Visualization
-  </div>
-  <div class="tags">
-    <div class="tag">Adobe Illustrator</div>
-    <div class="tag">Adobe InDesign</div>
-    <div class="tag">SketchBook Pro</div>
-  </div>
-</div>
+<div class="languages-list">
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-video"></i>
-    Audio / Video
+  <div class="language-card">
+    <div class="language-header">
+      <img src="assets/flags/it.png" class="flag" alt="Italian flag">
+      <div>
+        <div class="language-name">Italian</div>
+        <div class="language-level">Native</div>
+      </div>
+    </div>
   </div>
-  <div class="tags">
-    <div class="tag">Melodyne</div>
-    <div class="tag">Premiere Pro</div>
-    <div class="tag">After Effects</div>
-    <div class="tag">Movavi</div>
-  </div>
-</div>
 
-<div class="skill-card">
-  <div class="skill-title">
-    <i class="fa-solid fa-file-word"></i>
-    Other
+  <div class="language-card">
+    <div class="language-header">
+      <img src="assets/flags/uk.png" class="flag" alt="UK flag">
+      <div>
+        <div class="language-name">English</div>
+        <div class="language-level">C1 Advanced</div>
+      </div>
+    </div>
+
+    <div class="certification-box">
+      <img src="assets/logos/cambridge.png" class="certification-logo" alt="Cambridge English logo">
+
+      <div>
+        <div class="certification-title">Cambridge English Certificate</div>
+        <div class="certification-detail">C1 Advanced (CAE)</div>
+      </div>
+    </div>
   </div>
-  <div class="tags">
-    <div class="tag">Microsoft Office</div>
+
+  <div class="language-card">
+    <div class="language-header">
+      <img src="assets/flags/fr.png" class="flag" alt="French flag">
+      <div>
+        <div class="language-name">French</div>
+        <div class="language-level">B1</div>
+      </div>
+    </div>
   </div>
-</div>
 
 </div>
 
