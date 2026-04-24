@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience | Elisabetta Bettini</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --bg: #f7f8fb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 48px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.line {
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 30px;
+}
+
+.experience-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 26px 28px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(124,58,237,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.22s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,58,237,0.25);
+  box-shadow:
+    0 0 0 4px rgba(124,58,237,0.05),
+    0 12px 30px rgba(124,58,237,0.14);
+}
+
+.experience-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.company {
+  font-size: 22px;
+  font-weight: 750;
+  margin-bottom: 4px;
+}
+
+.role {
+  color: var(--purple);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 15px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.experience-card ul {
+  margin: 14px 0 0 20px;
+  padding: 0;
+  color: #374151;
+  line-height: 1.55;
+  font-size: 15.5px;
+}
+
+.experience-card li {
+  margin-bottom: 6px;
+}
+
+.back {
+  margin-top: 42px;
+}
+
+.back a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 34px 24px;
+  }
+
+  .experience-header {
+    grid-template-columns: 1fr;
+  }
+
+  .meta {
+    text-align: left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<h1>Professional Experience</h1>
+<div class="line"></div>
+
+<div class="experience-card">
+  <div class="experience-header">
+    <div>
+      <div class="company">NASA Jet Propulsion Laboratory (JPL)</div>
+      <div class="role">Structural Dynamics Intern — Robotics Mobility and Manipulation</div>
+    </div>
+    <div class="meta">
+      Pasadena, CA<br>
+      Nov 2025 – Present
+    </div>
+  </div>
+
+  <ul>
+    <li>Developed high-fidelity FEM models of a segmented telescope testbed for dynamic characterization.</li>
+    <li>Performed modal analysis, extracting natural frequencies and mode shapes.</li>
+    <li>Supported experimental modal testing.</li>
+    <li>Conducted FEM–experimental correlation to validate and refine structural models.</li>
+  </ul>
+</div>
+
+<div class="experience-card">
+  <div class="experience-header">
+    <div>
+      <div class="company">Piaggio &amp; C. S.p.A.</div>
+      <div class="role">Aftersales Engineer — Training &amp; Technical Documentation</div>
+    </div>
+    <div class="meta">
+      Pontedera, IT<br>
+      Aug 2023 – Oct 2025
+    </div>
+  </div>
+
+  <ul>
+    <li>Produced and managed technical documentation for diagnostic procedures of electromechanical ECU systems.</li>
+    <li>Collaborated with R&amp;D teams to improve diagnostic accuracy and fault detection strategies.</li>
+    <li>Supervised publication of technical notes and communications.</li>
+  </ul>
+</div>
+
+<div class="experience-card">
+  <div class="experience-header">
+    <div>
+      <div class="company">PERCeptual Robotics Lab — Scuola Superiore Sant’Anna</div>
+      <div class="role">Master Thesis Researcher</div>
+    </div>
+    <div class="meta">
+      Pisa, IT<br>
+      Dec 2022 – Jun 2023
+    </div>
+  </div>
+
+  <ul>
+    <li>Designed a master haptic interface for remote ultrasound diagnostics, featuring a five-bar mechanism with a spherical joint for precise probe manipulation.</li>
+    <li>Performed kinematic and singularity analysis to optimize workspace and motion fidelity.</li>
+    <li>Used MATLAB to perform singularity analysis and actuator sizing based on kinetostatic modeling.</li>
+    <li>Designed and prototyped mechanical components using PTC Creo and additive manufacturing.</li>
+  </ul>
+</div>
+
+<div class="experience-card">
+  <div class="experience-header">
+    <div>
+      <div class="company">3D Printing and Rapid Prototyping Lab — University of Pisa</div>
+      <div class="role">Bachelor Thesis Researcher</div>
+    </div>
+    <div class="meta">
+      Pisa, IT<br>
+      Mar 2019 – Feb 2020
+    </div>
+  </div>
+
+  <ul>
+    <li>Investigated surface roughness in stereolithography 3D-printed photopolymers.</li>
+    <li>Analyzed effects of layer height, orientation, and resin type.</li>
+    <li>Conducted pre- and post-curing surface characterization.</li>
+  </ul>
+</div>
+
+<div class="back">
+  <a href="index.html">← Back to homepage</a>
+</div>
+
+</div>
+
+</body>
+</html>
