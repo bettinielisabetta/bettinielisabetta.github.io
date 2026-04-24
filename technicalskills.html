@@ -35,6 +35,12 @@ h1 {
   margin-bottom: 10px;
 }
 
+h2 {
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
 .line {
   border-bottom: 2px solid var(--line);
   margin-bottom: 30px;
@@ -90,6 +96,27 @@ h1 {
   display: block;
 }
 
+/* SOFTWARE TAGS */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: rgba(124,58,237,0.08);
+  color: var(--purple);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: rgba(124,58,237,0.18);
+}
+
 /* BACK */
 .back {
   margin-top: 40px;
@@ -110,6 +137,65 @@ h1 {
 <h1>Technical Skills</h1>
 <div class="line"></div>
 
+<!-- TECHNICAL SKILLS -->
+<div class="skills-grid">
+
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-wave-square"></i>
+    Structural Dynamics & FEM
+  </div>
+  <div class="skill-list">
+    <span>Modal analysis</span>
+    <span>High-fidelity FEM modeling</span>
+    <span>Model correlation (FEM ↔ experimental)</span>
+    <span>Reduced-order modeling</span>
+  </div>
+</div>
+
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-gears"></i>
+    Mechanical Design
+  </div>
+  <div class="skill-list">
+    <span>Mechanism design (multi-DoF systems)</span>
+    <span>Singularity analysis</span>
+    <span>Actuator sizing</span>
+    <span>Hardware prototyping</span>
+  </div>
+</div>
+
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-chart-line"></i>
+    Data & Signal Analysis
+  </div>
+  <div class="skill-list">
+    <span>PSD, FRF, coherence analysis</span>
+    <span>Experimental data processing</span>
+    <span>Sensor data interpretation</span>
+  </div>
+</div>
+
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-flask"></i>
+    Experimental Testing
+  </div>
+  <div class="skill-list">
+    <span>Modal testing (hammer tests)</span>
+    <span>DAQ systems</span>
+    <span>Accelerometer-based measurements</span>
+  </div>
+</div>
+
+</div>
+
+<!-- SOFTWARE SECTION -->
+<h2>Software & Tools</h2>
+<div class="line"></div>
+
 <div class="skills-grid">
 
 <div class="skill-card">
@@ -117,12 +203,13 @@ h1 {
     <i class="fa-solid fa-chart-line"></i>
     Simulation & Analysis
   </div>
-  <div class="skill-list">
-    <span>Abaqus</span>
-    <span>Ansys Workbench</span>
-    <span>Ansys APDL</span>
-    <span>MATLAB / Simulink</span>
-    <span>Mathcad</span>
+  <div class="tags">
+    <div class="tag">Abaqus</div>
+    <div class="tag">Ansys Workbench</div>
+    <div class="tag">Ansys APDL</div>
+    <div class="tag">MATLAB</div>
+    <div class="tag">Simulink</div>
+    <div class="tag">Mathcad</div>
   </div>
 </div>
 
@@ -131,10 +218,10 @@ h1 {
     <i class="fa-solid fa-cube"></i>
     Mechanical Design
   </div>
-  <div class="skill-list">
-    <span>SolidWorks</span>
-    <span>PTC Creo</span>
-    <span>Autodesk Inventor</span>
+  <div class="tags">
+    <div class="tag">SolidWorks</div>
+    <div class="tag">PTC Creo</div>
+    <div class="tag">Autodesk Inventor</div>
   </div>
 </div>
 
@@ -143,10 +230,10 @@ h1 {
     <i class="fa-solid fa-pen-nib"></i>
     Graphics & Visualization
   </div>
-  <div class="skill-list">
-    <span>Adobe Illustrator</span>
-    <span>Adobe InDesign</span>
-    <span>Autodesk SketchBook Pro</span>
+  <div class="tags">
+    <div class="tag">Adobe Illustrator</div>
+    <div class="tag">Adobe InDesign</div>
+    <div class="tag">SketchBook Pro</div>
   </div>
 </div>
 
@@ -155,11 +242,11 @@ h1 {
     <i class="fa-solid fa-video"></i>
     Audio / Video
   </div>
-  <div class="skill-list">
-    <span>Melodyne</span>
-    <span>Adobe Premiere Pro</span>
-    <span>Adobe After Effects</span>
-    <span>Movavi Video Editor Plus</span>
+  <div class="tags">
+    <div class="tag">Melodyne</div>
+    <div class="tag">Premiere Pro</div>
+    <div class="tag">After Effects</div>
+    <div class="tag">Movavi</div>
   </div>
 </div>
 
@@ -168,8 +255,8 @@ h1 {
     <i class="fa-solid fa-file-word"></i>
     Other
   </div>
-  <div class="skill-list">
-    <span>Microsoft Office Suite</span>
+  <div class="tags">
+    <div class="tag">Microsoft Office</div>
   </div>
 </div>
 
