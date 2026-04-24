@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Skills | Elisabetta Bettini</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --bg: #f7f8fb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 48px 48px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.line {
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 30px;
+}
+
+/* GRID */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.skill-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid rgba(124,58,237,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.22s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,58,237,0.25);
+  box-shadow:
+    0 0 0 4px rgba(124,58,237,0.05),
+    0 12px 30px rgba(124,58,237,0.14);
+}
+
+/* HEADER */
+.skill-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-title i {
+  color: var(--purple);
+}
+
+/* LIST */
+.skill-list {
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.skill-list span {
+  display: block;
+}
+
+/* BACK */
+.back {
+  margin-top: 40px;
+}
+
+.back a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<h1>Technical Skills</h1>
+<div class="line"></div>
+
+<div class="skills-grid">
+
+<!-- Simulation -->
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-wave-square"></i>
+    Simulation & Analysis
+  </div>
+  <div class="skill-list">
+    <span>Abaqus (FEM modeling, modal analysis)</span>
+    <span>Structural dynamics</span>
+    <span>Model correlation (FEM ↔ experimental)</span>
+    <span>Reduced-order modeling</span>
+  </div>
+</div>
+
+<!-- Programming -->
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-code"></i>
+    Programming
+  </div>
+  <div class="skill-list">
+    <span>MATLAB (data processing, simulations)</span>
+    <span>Python (basic data analysis)</span>
+    <span>Signal processing (PSD, FRF, coherence)</span>
+  </div>
+</div>
+
+<!-- CAD -->
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-cube"></i>
+    CAD & Design
+  </div>
+  <div class="skill-list">
+    <span>PTC Creo</span>
+    <span>SolidWorks</span>
+    <span>Mechanism design (multi-DoF systems)</span>
+    <span>Actuator sizing & kinematics</span>
+  </div>
+</div>
+
+<!-- Experimental -->
+<div class="skill-card">
+  <div class="skill-title">
+    <i class="fa-solid fa-flask"></i>
+    Experimental & Lab
+  </div>
+  <div class="skill-list">
+    <span>Accelerometer data analysis</span>
+    <span>Modal testing (hammer test)</span>
+    <span>DAQ systems</span>
+    <span>FEM–experimental validation</span>
+  </div>
+</div>
+
+</div>
+
+<div class="back">
+  <a href="index.html">← Back to homepage</a>
+</div>
+
+</div>
+
+</body>
+</html>
