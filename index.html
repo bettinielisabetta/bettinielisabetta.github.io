@@ -41,11 +41,11 @@ body {
 .hero h1 {
   font-size: 48px;
   margin: 0 0 14px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.6px;
 }
 
-/* EYEBROW LABEL */
+/* LABEL */
 .hero-label {
   display: inline-block;
   color: var(--purple);
@@ -70,7 +70,7 @@ body {
   border: 1px solid rgba(124,58,237,0.10);
   border-radius: 18px;
   padding: 20px 22px;
-  max-width: 760px;
+  max-width: 720px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.04);
 }
 
@@ -85,15 +85,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .hero-tags span {
   background: rgba(124,58,237,0.08);
   color: var(--purple);
   border-radius: 999px;
-  padding: 7px 11px;
-  font-size: 14px;
+  padding: 6px 10px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -216,11 +216,6 @@ h2 {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .profile-photo {
-    width: 230px;
-    height: 230px;
-  }
 }
 
 @media (max-width: 650px) {
@@ -275,6 +270,97 @@ h2 {
 
   <img src="assets/images/profile.jpg" class="profile-photo" alt="Profile photo">
 </div>
+
+<!-- CONTENT -->
+<div class="content-grid">
+
+<!-- ABOUT -->
+<div>
+  <h2>About</h2>
+  <div class="line"></div>
+
+  <a class="about-link" href="education.html">
+    <i class="fa-solid fa-graduation-cap"></i> Education
+  </a>
+
+  <a class="about-link" href="experience.html">
+    <i class="fa-solid fa-briefcase"></i> Experience
+  </a>
+
+  <a class="about-link" href="technicalskills.html">
+    <i class="fa-solid fa-wrench"></i> Technical Skills
+  </a>
+
+  <a class="read-more" href="about.md">Read more →</a>
+</div>
+
+<!-- PROJECTS -->
+<div>
+  <h2>Projects</h2>
+  <div class="line"></div>
+
+  <div class="projects-grid">
+
+    <a class="project-card" href="projects/telescope.md">
+      <div>
+        <h3>Segmented Telescope Structural Analysis</h3>
+        <p>Structural dynamics, FEM modeling, modal analysis, and experimental correlation.</p>
+      </div>
+      <span>View project →</span>
+    </a>
+
+    <a class="project-card" href="projects/haptic.md">
+      <div>
+        <h3>Haptic Interface for Teleoperation</h3>
+        <p>Mechanism design, kinematic analysis, singularity study, and actuator sizing.</p>
+      </div>
+      <span>View project →</span>
+    </a>
+
+    <a class="project-card" href="projects/svej.md">
+      <div>
+        <h3>SVEJ Joint</h3>
+        <p>Mechanical joint design and analysis for compact articulated systems.</p>
+      </div>
+      <span>View project →</span>
+    </a>
+
+    <a class="project-card" href="projects/image-segmentation.md">
+      <div>
+        <h3>Image Segmentation & Classification</h3>
+        <p>Image processing and supervised classification of historical manuscripts.</p>
+      </div>
+      <span>View project →</span>
+    </a>
+
+  </div>
+</div>
+
+</div>
+
+<!-- LOWER -->
+<div class="lower">
+
+<div>
+  <h2>CV</h2>
+  <div class="line"></div>
+  <a href="assets/cv.pdf" download>Download CV</a>
+</div>
+
+<div class="contact">
+  <h2>Contact</h2>
+  <div class="line"></div>
+
+  <p><i class="fa-solid fa-envelope"></i> be.bettinielisabetta@gmail.com</p>
+  <p><i class="fa-brands fa-linkedin"></i>
+    <a href="https://www.linkedin.com/in/elisabetta-bettini/" target="_blank">
+      linkedin.com/in/elisabetta-bettini
+    </a>
+  </p>
+</div>
+
+</div>
+
 
 </div>
 </body>
