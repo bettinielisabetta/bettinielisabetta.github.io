@@ -25,7 +25,7 @@ body {
 }
 
 .page {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
   padding: 48px;
 }
@@ -40,11 +40,18 @@ h1 {
   margin-bottom: 30px;
 }
 
+/* CARD */
 .experience-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 26px;
+  align-items: center;
+
   background: var(--white);
   border-radius: 18px;
-  padding: 26px 28px;
+  padding: 26px;
   margin-bottom: 24px;
+
   border: 1px solid rgba(124,58,237,0.08);
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
   transition: all 0.22s ease;
@@ -55,51 +62,75 @@ h1 {
   border-color: rgba(124,58,237,0.25);
   box-shadow:
     0 0 0 4px rgba(124,58,237,0.05),
-    0 12px 30px rgba(124,58,237,0.14);
+    0 14px 32px rgba(124,58,237,0.14);
 }
 
-.experience-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  align-items: start;
-  margin-bottom: 12px;
+/* LOGO */
+.logo-box {
+  width: 110px;
+  height: 110px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
+.logo-box img {
+  max-width: 90px;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+/* CONTENT */
 .company {
   font-size: 22px;
-  font-weight: 750;
-  margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .role {
   color: var(--purple);
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin: 4px 0 10px;
 }
 
 .meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
   color: var(--muted);
-  font-size: 15px;
-  text-align: right;
-  line-height: 1.5;
+  font-size: 14.5px;
+  margin-bottom: 12px;
+}
+
+.meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta i {
+  color: var(--purple);
 }
 
 .experience-card ul {
-  margin: 14px 0 0 20px;
-  padding: 0;
+  margin: 10px 0 0 18px;
   color: #374151;
+  font-size: 15px;
   line-height: 1.55;
-  font-size: 15.5px;
 }
 
 .experience-card li {
   margin-bottom: 6px;
 }
 
+/* BACK */
 .back {
-  margin-top: 42px;
+  margin-top: 40px;
 }
 
 .back a {
@@ -108,17 +139,15 @@ h1 {
   font-weight: 600;
 }
 
-@media (max-width: 700px) {
-  .page {
-    padding: 34px 24px;
-  }
-
-  .experience-header {
+/* MOBILE */
+@media (max-width: 750px) {
+  .experience-card {
     grid-template-columns: 1fr;
   }
 
-  .meta {
-    text-align: left;
+  .logo-box {
+    width: 90px;
+    height: 90px;
   }
 }
 </style>
@@ -131,82 +160,106 @@ h1 {
 <h1>Professional Experience</h1>
 <div class="line"></div>
 
+<!-- JPL -->
 <div class="experience-card">
-  <div class="experience-header">
-    <div>
-      <div class="company">NASA Jet Propulsion Laboratory (JPL)</div>
-      <div class="role">Structural Dynamics Intern — Robotics Mobility and Manipulation</div>
-    </div>
-    <div class="meta">
-      Pasadena, CA<br>
-      Nov 2025 – Present
-    </div>
+
+  <div class="logo-box">
+    <img src="assets/logos/jpl.png" alt="JPL logo">
   </div>
 
-  <ul>
-    <li>Developed high-fidelity FEM models of a segmented telescope testbed for dynamic characterization.</li>
-    <li>Performed modal analysis, extracting natural frequencies and mode shapes.</li>
-    <li>Supported experimental modal testing.</li>
-    <li>Conducted FEM–experimental correlation to validate and refine structural models.</li>
-  </ul>
+  <div>
+    <div class="company">NASA Jet Propulsion Laboratory (JPL)</div>
+    <div class="role">Structural Dynamics Intern — Robotics Mobility and Manipulation</div>
+
+    <div class="meta">
+      <span><i class="fa-solid fa-location-dot"></i> Pasadena, CA</span>
+      <span><i class="fa-solid fa-calendar-days"></i> Nov 2025 – Present</span>
+    </div>
+
+    <ul>
+      <li>Developed high-fidelity FEM models of a segmented telescope testbed for dynamic characterization</li>
+      <li>Performed modal analysis, extracting natural frequencies and mode shapes</li>
+      <li>Supported experimental modal testing</li>
+      <li>Conducted FEM–experimental correlation to validate and refine structural models</li>
+    </ul>
+  </div>
+
 </div>
 
+<!-- PIAGGIO -->
 <div class="experience-card">
-  <div class="experience-header">
-    <div>
-      <div class="company">Piaggio &amp; C. S.p.A.</div>
-      <div class="role">Aftersales Engineer — Training &amp; Technical Documentation</div>
-    </div>
-    <div class="meta">
-      Pontedera, IT<br>
-      Aug 2023 – Oct 2025
-    </div>
+
+  <div class="logo-box">
+    <img src="assets/logos/piaggio.png" alt="Piaggio logo">
   </div>
 
-  <ul>
-    <li>Produced and managed technical documentation for diagnostic procedures of electromechanical ECU systems.</li>
-    <li>Collaborated with R&amp;D teams to improve diagnostic accuracy and fault detection strategies.</li>
-    <li>Supervised publication of technical notes and communications.</li>
-  </ul>
+  <div>
+    <div class="company">Piaggio & C. S.p.A.</div>
+    <div class="role">Aftersales Engineer — Training & Technical Documentation</div>
+
+    <div class="meta">
+      <span><i class="fa-solid fa-location-dot"></i> Pontedera, IT</span>
+      <span><i class="fa-solid fa-calendar-days"></i> Aug 2023 – Oct 2025</span>
+    </div>
+
+    <ul>
+      <li>Produced and managed technical documentation for diagnostic procedures of electromechanical ECU systems</li>
+      <li>Collaborated with R&D teams to improve diagnostic accuracy and fault detection strategies</li>
+      <li>Supervised publication of technical notes and communications</li>
+    </ul>
+  </div>
+
 </div>
 
+<!-- PERCRO -->
 <div class="experience-card">
-  <div class="experience-header">
-    <div>
-      <div class="company">PERCeptual Robotics Lab — Scuola Superiore Sant’Anna</div>
-      <div class="role">Master Thesis Researcher</div>
-    </div>
-    <div class="meta">
-      Pisa, IT<br>
-      Dec 2022 – Jun 2023
-    </div>
+
+  <div class="logo-box">
+    <img src="assets/logos/santanna.png" alt="Sant'Anna logo">
   </div>
 
-  <ul>
-    <li>Designed a master haptic interface for remote ultrasound diagnostics, featuring a five-bar mechanism with a spherical joint for precise probe manipulation.</li>
-    <li>Performed kinematic and singularity analysis to optimize workspace and motion fidelity.</li>
-    <li>Used MATLAB to perform singularity analysis and actuator sizing based on kinetostatic modeling.</li>
-    <li>Designed and prototyped mechanical components using PTC Creo and additive manufacturing.</li>
-  </ul>
+  <div>
+    <div class="company">PERCRO Lab — Scuola Superiore Sant’Anna</div>
+    <div class="role">Master Thesis Researcher</div>
+
+    <div class="meta">
+      <span><i class="fa-solid fa-location-dot"></i> Pisa, IT</span>
+      <span><i class="fa-solid fa-calendar-days"></i> Dec 2022 – Jun 2023</span>
+    </div>
+
+    <ul>
+      <li>Designed a master haptic interface for remote ultrasound diagnostics</li>
+      <li>Performed kinematic and singularity analysis</li>
+      <li>Used MATLAB for actuator sizing via kinetostatic modeling</li>
+      <li>Designed and prototyped mechanical components using PTC Creo</li>
+    </ul>
+  </div>
+
 </div>
 
+<!-- RAPID PROTOTYPING -->
 <div class="experience-card">
-  <div class="experience-header">
-    <div>
-      <div class="company">3D Printing and Rapid Prototyping Lab — University of Pisa</div>
-      <div class="role">Bachelor Thesis Researcher</div>
-    </div>
-    <div class="meta">
-      Pisa, IT<br>
-      Mar 2019 – Feb 2020
-    </div>
+
+  <div class="logo-box">
+    <img src="assets/logos/unipi.png" alt="University of Pisa logo">
   </div>
 
-  <ul>
-    <li>Investigated surface roughness in stereolithography 3D-printed photopolymers.</li>
-    <li>Analyzed effects of layer height, orientation, and resin type.</li>
-    <li>Conducted pre- and post-curing surface characterization.</li>
-  </ul>
+  <div>
+    <div class="company">3D Printing & Rapid Prototyping Lab — University of Pisa</div>
+    <div class="role">Bachelor Thesis Researcher</div>
+
+    <div class="meta">
+      <span><i class="fa-solid fa-location-dot"></i> Pisa, IT</span>
+      <span><i class="fa-solid fa-calendar-days"></i> Mar 2019 – Feb 2020</span>
+    </div>
+
+    <ul>
+      <li>Investigated surface roughness in SLA 3D-printed photopolymers</li>
+      <li>Analyzed effects of layer height, orientation, and resin type</li>
+      <li>Conducted pre- and post-curing surface characterization</li>
+    </ul>
+  </div>
+
 </div>
 
 <div class="back">
