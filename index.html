@@ -9,7 +9,6 @@
 
 <style>
 :root {
-  --bg: #f7f8fb;
   --text: #0f172a;
   --muted: #6b7280;
   --purple: #7c3aed;
@@ -17,10 +16,11 @@
   --white: #ffffff;
 }
 
+/* BACKGROUND GRADIENT */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
   color: var(--text);
 }
 
@@ -68,7 +68,7 @@ body {
   box-shadow: 0 16px 34px rgba(0,0,0,0.13);
 }
 
-/* MAIN GRID */
+/* GRID */
 .content-grid {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -95,6 +95,11 @@ h2 {
   text-decoration: none;
   margin: 18px 0;
   font-size: 17px;
+  transition: transform 0.2s ease;
+}
+
+.about-link:hover {
+  transform: translateX(4px);
 }
 
 .about-link i {
@@ -208,23 +213,6 @@ h2 {
     font-size: 40px;
   }
 
-  .name-glow {
-    transition: text-shadow 0.3s ease, color 0.3s ease;
-  }
-
-  .name-glow:hover {
-    color: #7c3aed;
-    text-shadow: 0 0 18px rgba(124, 58, 237, 0.25);
-  }
-  
-  .subtitle {
-    font-size: 19px;
-  }
-
-  .bio {
-    font-size: 16px;
-  }
-
   .projects-grid {
     grid-template-columns: 1fr;
   }
@@ -238,7 +226,7 @@ h2 {
 <!-- HERO -->
 <div class="hero">
   <div>
-    <h1 class="name-glow">Elisabetta Bettini</h1>
+    <h1>Elisabetta Bettini</h1>
 
     <div class="subtitle">
       Mechanical Engineer — Structural Dynamics, FEM & Experimental Analysis
@@ -251,7 +239,7 @@ h2 {
     </p>
   </div>
 
-  <img src="assets/images/profile.jpg" class="profile-photo" alt="Elisabetta Bettini profile photo">
+  <img src="assets/images/profile.jpg" class="profile-photo" alt="Profile photo">
 </div>
 
 <!-- CONTENT -->
@@ -262,7 +250,7 @@ h2 {
   <h2>About</h2>
   <div class="line"></div>
 
-<a class="about-link" href="education.html">
+  <a class="about-link" href="education.html">
     <i class="fa-solid fa-graduation-cap"></i> Education
   </a>
 
