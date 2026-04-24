@@ -16,7 +16,7 @@
   --white: #ffffff;
 }
 
-/* BACKGROUND GRADIENT */
+/* BACKGROUND */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -41,10 +41,22 @@ body {
 .hero h1 {
   font-size: 48px;
   margin: 0 0 14px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  font-weight: 650;
+  letter-spacing: -0.6px;
 }
-  
+
+/* EYEBROW LABEL */
+.hero-label {
+  display: inline-block;
+  color: var(--purple);
+  background: rgba(124,58,237,0.08);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
 .subtitle {
   font-size: 22px;
   color: var(--muted);
@@ -52,10 +64,37 @@ body {
   line-height: 1.3;
 }
 
+/* BIO CARD */
+.bio-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(124,58,237,0.10);
+  border-radius: 18px;
+  padding: 20px 22px;
+  max-width: 760px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
 .bio {
   font-size: 18px;
   line-height: 1.5;
-  max-width: 720px;
+  margin: 0;
+}
+
+/* TAGS */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-tags span {
+  background: rgba(124,58,237,0.08);
+  color: var(--purple);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* PHOTO */
@@ -144,26 +183,6 @@ h2 {
     0 16px 34px rgba(124, 58, 237, 0.18);
 }
 
-.project-card h3 {
-  font-size: 18px;
-  line-height: 1.25;
-  margin: 0 0 12px;
-}
-
-.project-card p {
-  color: var(--muted);
-  font-size: 15.5px;
-  line-height: 1.45;
-  margin: 0;
-}
-
-.project-card span {
-  color: var(--purple);
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 22px;
-}
-
 /* LOWER */
 .lower {
   display: grid;
@@ -226,110 +245,35 @@ h2 {
 <!-- HERO -->
 <div class="hero">
   <div>
+
+    <div class="hero-label">
+      Structural Dynamics • FEM • Mechanism Design
+    </div>
+
     <h1>Elisabetta Bettini</h1>
 
     <div class="subtitle">
       Mechanical Engineer — Structural Dynamics, FEM & Experimental Analysis
     </div>
 
-    <p class="bio">
-      Mechanical Engineer specializing in structural dynamics, mechanism design, and high-fidelity FEM modeling,
-      currently at NASA Jet Propulsion Laboratory. Background includes design, kinematic and singularity analysis
-      of multi-DoF linkages, hyperelastic FEM modeling, and actuator sizing via simulation.
-    </p>
+    <div class="bio-card">
+      <p class="bio">
+        Mechanical Engineer specializing in structural dynamics, mechanism design, and high-fidelity FEM modeling,
+        currently at NASA Jet Propulsion Laboratory. Background includes design, kinematic and singularity analysis
+        of multi-DoF linkages, hyperelastic FEM modeling, and actuator sizing via simulation.
+      </p>
+
+      <div class="hero-tags">
+        <span>FEM Modeling</span>
+        <span>Modal Analysis</span>
+        <span>Mechanism Design</span>
+        <span>Experimental Correlation</span>
+      </div>
+    </div>
+
   </div>
 
   <img src="assets/images/profile.jpg" class="profile-photo" alt="Profile photo">
-</div>
-
-<!-- CONTENT -->
-<div class="content-grid">
-
-<!-- ABOUT -->
-<div>
-  <h2>About</h2>
-  <div class="line"></div>
-
-  <a class="about-link" href="education.html">
-    <i class="fa-solid fa-graduation-cap"></i> Education
-  </a>
-
-  <a class="about-link" href="experience.html">
-    <i class="fa-solid fa-briefcase"></i> Experience
-  </a>
-
-  <a class="about-link" href="technicalskills.html">
-    <i class="fa-solid fa-wrench"></i> Technical Skills
-  </a>
-
-  <a class="read-more" href="about.md">Read more →</a>
-</div>
-
-<!-- PROJECTS -->
-<div>
-  <h2>Projects</h2>
-  <div class="line"></div>
-
-  <div class="projects-grid">
-
-    <a class="project-card" href="projects/telescope.md">
-      <div>
-        <h3>Segmented Telescope Structural Analysis</h3>
-        <p>Structural dynamics, FEM modeling, modal analysis, and experimental correlation.</p>
-      </div>
-      <span>View project →</span>
-    </a>
-
-    <a class="project-card" href="projects/haptic.md">
-      <div>
-        <h3>Haptic Interface for Teleoperation</h3>
-        <p>Mechanism design, kinematic analysis, singularity study, and actuator sizing.</p>
-      </div>
-      <span>View project →</span>
-    </a>
-
-    <a class="project-card" href="projects/svej.md">
-      <div>
-        <h3>SVEJ Joint</h3>
-        <p>Mechanical joint design and analysis for compact articulated systems.</p>
-      </div>
-      <span>View project →</span>
-    </a>
-
-    <a class="project-card" href="projects/image-segmentation.md">
-      <div>
-        <h3>Image Segmentation & Classification</h3>
-        <p>Image processing and supervised classification of historical manuscripts.</p>
-      </div>
-      <span>View project →</span>
-    </a>
-
-  </div>
-</div>
-
-</div>
-
-<!-- LOWER -->
-<div class="lower">
-
-<div>
-  <h2>CV</h2>
-  <div class="line"></div>
-  <a href="assets/cv.pdf" download>Download CV</a>
-</div>
-
-<div class="contact">
-  <h2>Contact</h2>
-  <div class="line"></div>
-
-  <p><i class="fa-solid fa-envelope"></i> be.bettinielisabetta@gmail.com</p>
-  <p><i class="fa-brands fa-linkedin"></i>
-    <a href="https://www.linkedin.com/in/elisabetta-bettini/" target="_blank">
-      linkedin.com/in/elisabetta-bettini
-    </a>
-  </p>
-</div>
-
 </div>
 
 </div>
