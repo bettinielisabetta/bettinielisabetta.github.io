@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATLAB Code | Image Segmentation</title>
+
+<style>
+:root {
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1120px;
+  margin: auto;
+  padding: 48px 52px;
+}
+
+.back {
+  display: inline-block;
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 34px;
+}
+
+.label {
+  display: inline-block;
+  color: var(--purple);
+  background: rgba(124,58,237,0.08);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  font-weight: 650;
+  letter-spacing: -0.5px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 820px;
+  margin-bottom: 28px;
+}
+
+.notice {
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.12);
+  color: #374151;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  margin-bottom: 26px;
+}
+
+.code-box {
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  overflow-x: auto;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+pre {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  white-space: pre;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 34px 24px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<a class="back" href="image-segmentation.html">← Back to project</a>
+
+<div class="label">MATLAB · Image Processing · Supervised Classification</div>
+
+<h1>MATLAB Implementation</h1>
+
+<p class="description">
+  MATLAB script used for manuscript image preprocessing, foreground segmentation,
+  connected component analysis, feature extraction, interactive labeling, and supervised text/non-text classification.
+</p>
+
+<div class="notice">
+  Code shown for portfolio review. The script is displayed as part of the project documentation.
+</div>
+
+<div class="code-box">
+<pre><code>%% ============================================================
+%  Segmentation and Supervised Classification in Historical Manuscripts
+%  (Spices 17 - Bettini Elisabetta)
+%
+%  Pipeline summary:
+%   1) Read + inspect input ROI
+%   2) Grayscale + normalization
+%   3) Contrast enhancement + denoising
+%   4) Dual-threshold (Otsu) + morphological reconstruction
+%   5) Morphological refinement (area opening, closing, limited hole filling)
+%   6) Decoration splitting (area-based separation + marker-controlled watershed)
+%   7) Connected components + feature extraction
+%   8) Interactive labeling + supervised classification (Linear SVM)
+%   9) Post-processing + visualization
+%% ============================================================
+
+clear; close all; clc;
+
+%% 1. Input image (ROI) and basic inspection
+imgPath = &#x27;my_roi.jpg&#x27;;
+Irgb = imread(imgPath);
+
+disp(&#x27;--- Image inspection ---&#x27;);
+disp([&#x27;File:  &#x27;, imgPath]);
+disp([&#x27;Class: &#x27;, class(Irgb)]);
+disp([&#x27;Size:  &#x27;, mat2str(size(Irgb))]);
+
+figure; imshow(Irgb);
+title(&#x27;Figure 1: Original ROI (RGB)&#x27;);
+
+%% 2. Grayscale conversion and normalization
+if size(Irgb,3) == 3
+    Igray = rgb2gray(Irgb);
+else
+    Igray = Irgb;
+end
+Igray = im2double(Igray);
+
+figure; imshow(Igray);
+title(&#x27;Figure 2: Grayscale ROI (normalized to [0,1])&#x27;);
+
+%% 3. Intensity analysis and contrast enhancement
+figure; imhist(Igray);
+title(&#x27;Figure 3: Grayscale histogram&#x27;);
+
+Iadj = imadjust(Igray);
+
+figure;
+subplot(1,2,1); imshow(Igray); title(&#x27;Before contrast adjustment&#x27;);
+subplot(1,2,2); imshow(Iadj);  title(&#x27;After contrast adjustment&#x27;);
+sgtitle(&#x27;Figure 4: Contrast stretching (imadjust)&#x27;);
+
+figure;
+subplot(1,2,1); imhist(Igray); title(&#x27;Histogram before&#x27;);
+subplot(1,2,2); imhist(Iadj);  title(&#x27;Histogram after&#x27;);
+sgtitle(&#x27;Figure 5: Histogram comparison&#x27;);
+
+%% 4. Noise reduction (Gaussian filtering)
+sigma = 1.0;  % typical range: 0.8–1.5
+Ifilt = imgaussfilt(Iadj, sigma);
+
+figure;
+subplot(1,2,1); imshow(Iadj);  title(&#x27;After contrast adjustment&#x27;);
+subplot(1,2,2); imshow(Ifilt); title([&#x27;After Gaussian filtering (\sigma = &#x27;, num2str(sigma), &#x27;)&#x27;]);
+sgtitle(&#x27;Figure 6: Denoising&#x27;);
+
+%% 5. Foreground segmentation: dual-threshold Otsu + reconstruction
+Totsu = graythresh(Ifilt);
+
+kSeed = 0.90;   % conservative: confident ink only
+kCand = 1.15;   % permissive: includes lighter strokes (typical: 1.02–1.20)
+
+BW_seed = Ifilt &lt; (kSeed*Totsu);
+BW_cand = Ifilt &lt; (kCand*Totsu);
+
+BW_rec = imreconstruct(BW_seed, BW_cand);
+
+figure;
+subplot(1,3,1); imshow(BW_seed); title([&#x27;Seed mask (k = &#x27;, num2str(kSeed), &#x27;)&#x27;]);
+subplot(1,3,2); imshow(BW_cand); title([&#x27;Candidate mask (k = &#x27;, num2str(kCand), &#x27;)&#x27;]);
+subplot(1,3,3); imshow(BW_rec);  title(&#x27;Reconstructed foreground&#x27;);
+sgtitle(&#x27;Figure 7: Dual-threshold + reconstruction&#x27;);
+
+%% 6. Morphological refinement (clean + reconnect + limited hole filling)
+% 6.1 Remove small components
+minArea = 150;  % tuned to ROI resolution/scale
+BW_clean1 = bwareaopen(BW_rec, minArea);
+
+figure;
+subplot(1,2,1); imshow(BW_rec);    title(&#x27;After reconstruction&#x27;);
+subplot(1,2,2); imshow(BW_clean1); title([&#x27;After area opening (minArea = &#x27;, num2str(minArea), &#x27;)&#x27;]);
+sgtitle(&#x27;Figure 8: Small object removal&#x27;);
+
+% 6.2 Closing (reconnect fragmented strokes / leaf edges)
+seClose = strel(&#x27;disk&#x27;, 1);
+BW_clean2 = imclose(BW_clean1, seClose);
+
+figure;
+subplot(1,2,1); imshow(BW_clean1); title(&#x27;After area opening&#x27;);
+subplot(1,2,2); imshow(BW_clean2); title(&#x27;After closing (disk r = 1)&#x27;);
+sgtitle(&#x27;Figure 9: Closing&#x27;);
+
+% 6.3 Limited hole filling (fill only small holes)
+holes = imfill(BW_clean2, &#x27;holes&#x27;) &amp; ~BW_clean2;
+CC_h = bwconncomp(holes);
+holeAreas = cellfun(@numel, CC_h.PixelIdxList);
+
+maxHoleArea = 50;   % tuned 50–1500
+keep = find(holeAreas &lt;= maxHoleArea);
+
+holesSmall = false(size(BW_clean2));
+for ii = keep
+    holesSmall(CC_h.PixelIdxList{ii}) = true;
+end
+
+BW_clean3 = BW_clean2 | holesSmall;
+
+figure;
+subplot(1,3,1); imshow(BW_clean2);  title(&#x27;After closing&#x27;);
+subplot(1,3,2); imshow(holesSmall); title([&#x27;Filled holes (Area \le &#x27;, num2str(maxHoleArea), &#x27;)&#x27;]);
+subplot(1,3,3); imshow(BW_clean3);  title(&#x27;After limited hole filling&#x27;);
+sgtitle(&#x27;Figure 10: Limited hole filling&#x27;);
+
+%% 7. Decoration splitting prior to connected components extraction
+% Goal: improve separation of fused decorative structures while preserving text integrity.
+
+minAreaCC = 250;  % minimum CC size 
+BW_cc0 = bwareaopen(BW_clean3, minAreaCC);
+
+figure; imshow(BW_cc0);
+title(&#x27;Figure 11: Base mask for connected components (BW\_cc0)&#x27;);
+
+% 7.1 Separate large vs small components (area-based)
+CC0 = bwconncomp(BW_cc0);
+stats0 = regionprops(CC0, &#x27;Area&#x27;);
+A0 = [stats0.Area];
+
+areaSplitThr = 6000;  % tuned: separates macro decorations/illustrations vs text-like CCs
+idxBig = find(A0 &gt;= areaSplitThr);
+
+L0 = labelmatrix(CC0);
+BW_big   = ismember(L0, idxBig);
+BW_small = BW_cc0 &amp; ~BW_big;
+
+figure;
+subplot(1,3,1); imshow(BW_cc0);   title(&#x27;BW\_cc0&#x27;);
+subplot(1,3,2); imshow(BW_big);   title([&#x27;Large CCs (Area \ge &#x27;, num2str(areaSplitThr), &#x27;)&#x27;]);
+subplot(1,3,3); imshow(BW_small); title(&#x27;Small CCs (kept intact)&#x27;);
+sgtitle(&#x27;Figure 12: Large vs small component separation&#x27;);
+
+% 7.2 Split fused large components via marker-controlled watershed
+BW = BW_big;
+
+D = bwdist(~BW);
+D = imgaussfilt(D, 1);  % tuned: 0.5–2
+
+hMax = 1.5;             % tuned typical range: 0.8–3 
+M = imextendedmax(D, hMax);
+M = bwareaopen(M, 20);
+
+D2 = imimposemin(-D, M | ~BW);
+Lw = watershed(D2);
+
+BW_ws = BW;
+BW_ws(Lw == 0) = 0;
+BW_ws = bwareaopen(BW_ws, minAreaCC);
+
+figure;
+subplot(2,3,1); imshow(BW);              title(&#x27;Large CC mask (input)&#x27;);
+subplot(2,3,2); imagesc(D); axis image off; title(&#x27;Distance transform&#x27;); colormap jet; colorbar;
+subplot(2,3,3); imshow(M);               title([&#x27;Markers (h = &#x27;, num2str(hMax), &#x27;)&#x27;]);
+subplot(2,3,4); imagesc(Lw); axis image off; title(&#x27;Watershed labels&#x27;); colormap jet; colorbar;
+subplot(2,3,5); imshow(Lw==0);           title(&#x27;Watershed ridges&#x27;);
+subplot(2,3,6); imshow(BW_ws);           title(&#x27;Large CCs after watershed split&#x27;);
+sgtitle(&#x27;Figure 13: Watershed splitting of fused decorations&#x27;);
+
+% 7.3 Recombine (keep text CCs intact)
+BW_split = BW_ws | BW_small;
+BW_cc = bwareaopen(BW_split, minAreaCC);
+
+figure;
+subplot(1,2,1); imshow(BW_cc0); title(&#x27;Before split (BW\_cc0)&#x27;);
+subplot(1,2,2); imshow(BW_cc);  title(&#x27;After split (BW\_cc)&#x27;);
+sgtitle(&#x27;Figure 14: Final CC extraction mask&#x27;);
+
+% Feature measurement mask (less altered topology than BW_cc)
+BW_feat = bwareaopen(BW_clean2, minAreaCC);
+
+%% 8. Connected components and feature extraction
+BW_cc   = bwareaopen(BW_cc,   minAreaCC);
+BW_feat = bwareaopen(BW_feat, minAreaCC);
+
+CC = bwconncomp(BW_cc);
+disp([&#x27;Connected components (after split): &#x27;, num2str(CC.NumObjects)]);
+
+Lcc = labelmatrix(CC);
+figure; imagesc(Lcc); axis image off;
+title(&#x27;Figure 15: Labeled connected components&#x27;);
+colormap jet; colorbar;
+
+props = regionprops(CC, BW_feat, ...
+    &#x27;Area&#x27;,&#x27;Perimeter&#x27;,&#x27;Eccentricity&#x27;,&#x27;Solidity&#x27;, ...
+    &#x27;MajorAxisLength&#x27;,&#x27;MinorAxisLength&#x27;, ...
+    &#x27;Extent&#x27;,&#x27;EulerNumber&#x27;, ...
+    &#x27;Centroid&#x27;,&#x27;BoundingBox&#x27;);
+
+T = struct2table(props);
+
+propsI = regionprops(CC, Ifilt, &#x27;MeanIntensity&#x27;,&#x27;MinIntensity&#x27;,&#x27;MaxIntensity&#x27;);
+T = [T struct2table(propsI)];
+
+% Derived features
+eps0 = 1e-6;
+T.AspectRatio = T.MajorAxisLength ./ (T.MinorAxisLength + eps0);
+T.Circularity = 4*pi*T.Area ./ (T.Perimeter.^2 + eps0);
+
+T.BB_Width  = T.BoundingBox(:,3);
+T.BB_Height = T.BoundingBox(:,4);
+T.BB_Area   = T.BB_Width .* T.BB_Height;
+T.FillRatio = T.Area ./ (T.BB_Area + eps0);
+
+T.StrokeProxy = T.Area ./ (T.Perimeter + eps0);
+
+disp(&#x27;--- Feature table (first rows) ---&#x27;);
+disp(T(1:min(10,height(T)), :));
+
+% Bounding box visualization
+figure; imshow(Irgb); hold on;
+statsBB = regionprops(CC, &#x27;BoundingBox&#x27;);
+for i = 1:numel(statsBB)
+    rectangle(&#x27;Position&#x27;, statsBB(i).BoundingBox, &#x27;EdgeColor&#x27;,&#x27;r&#x27;,&#x27;LineWidth&#x27;,0.5);
+end
+title(&#x27;Figure 16: Bounding boxes of connected components&#x27;);
+hold off;
+
+%% 9. Feature matrix construction
+featNames = {&#x27;Area&#x27;,&#x27;Perimeter&#x27;,&#x27;Eccentricity&#x27;,&#x27;Solidity&#x27;, ...
+             &#x27;MajorAxisLength&#x27;,&#x27;MinorAxisLength&#x27;, ...
+             &#x27;Extent&#x27;,&#x27;EulerNumber&#x27;, ...
+             &#x27;MeanIntensity&#x27;,&#x27;MinIntensity&#x27;,&#x27;MaxIntensity&#x27;, ...
+             &#x27;AspectRatio&#x27;,&#x27;Circularity&#x27;,&#x27;FillRatio&#x27;,&#x27;StrokeProxy&#x27;};
+
+featNames = featNames(ismember(featNames, T.Properties.VariableNames));
+
+X_all = T{:, featNames};
+X_all_z = zscore(X_all);
+
+disp([&#x27;Features used: &#x27;, num2str(size(X_all_z,2)), &#x27; (standardized)&#x27;]);
+
+%% 10. Interactive labeling (Text vs NonText)
+L = labelmatrix(CC);
+propsL = regionprops(CC, Ifilt, &#x27;BoundingBox&#x27;, &#x27;Centroid&#x27;, &#x27;Area&#x27;);
+
+figure; imshow(Iadj);
+title(&#x27;Interactive labeling: click a component (press Enter to stop)&#x27;); hold on;
+
+labelNames = {&#x27;Text&#x27;,&#x27;NonText&#x27;};
+labelCodes = [1 2];
+
+idxTrain = [];
+yTrain = [];
+
+minAreaLabel = 80;
+maxAreaLabel = 0.20 * numel(BW_cc);
+
+while true
+    [x, y] = ginput(1);
+    if isempty(x); break; end
+
+    r = round(y); c = round(x);
+    if r &lt; 1 || r &gt; size(L,1) || c &lt; 1 || c &gt; size(L,2)
+        disp(&#x27;Click inside the image.&#x27;);
+        continue;
+    end
+
+    id = L(r, c);
+    if id == 0
+        disp(&#x27;Background clicked. Try again.&#x27;);
+        continue;
+    end
+
+    A = propsL(id).Area;
+    if A &lt; minAreaLabel
+        disp([&#x27;Skipping CC &#x27;, num2str(id), &#x27; (too small: Area=&#x27;, num2str(A), &#x27;).&#x27;]);
+        continue;
+    end
+    if A &gt; maxAreaLabel
+        disp([&#x27;Skipping CC &#x27;, num2str(id), &#x27; (too large: Area=&#x27;, num2str(A), &#x27;).&#x27;]);
+        continue;
+    end
+
+    bb = propsL(id).BoundingBox;
+    rectangle(&#x27;Position&#x27;, bb, &#x27;EdgeColor&#x27;,&#x27;y&#x27;, &#x27;LineWidth&#x27;, 1.2);
+
+    choice = menu([&#x27;Component &#x27;, num2str(id), &#x27;: choose class&#x27;], labelNames{:});
+    if choice == 0
+        disp(&#x27;No class selected. Skipping.&#x27;);
+        continue;
+    end
+
+    idxTrain(end+1,1) = id;
+    yTrain(end+1,1)   = labelCodes(choice);
+
+    disp([&#x27;Labeled CC &#x27;, num2str(id), &#x27; as &#x27;, labelNames{choice}, &#x27; (Area=&#x27;, num2str(A), &#x27;)&#x27;]);
+end
+hold off;
+
+[idxTrain, ia] = unique(idxTrain, &#x27;stable&#x27;);
+yTrain = yTrain(ia);
+
+disp([&#x27;Total labeled components: &#x27;, num2str(numel(idxTrain))]);
+
+%% 11. Supervised classification (Linear SVM) 
+Xtrain = X_all_z(idxTrain, :);
+ytrain = yTrain;
+
+disp(&#x27;Training set size per class:&#x27;);
+disp(tabulate(ytrain));
+
+Mdl = fitcsvm(Xtrain, ytrain, ...
+    &#x27;KernelFunction&#x27;,&#x27;linear&#x27;, ...
+    &#x27;Standardize&#x27;,false, ...
+    &#x27;ClassNames&#x27;,[1 2]);
+
+K = min(5, numel(ytrain));
+CV = crossval(Mdl, &#x27;KFold&#x27;, K);
+loss = kfoldLoss(CV);
+disp([&#x27;K-fold loss: &#x27;, num2str(loss), &#x27; (accuracy ~ &#x27;, num2str(1-loss), &#x27;)&#x27;]);
+
+yPredAll = predict(Mdl, X_all_z);
+
+% Post-classification cleanup (large CCs are unlikely to be text)
+maxTextArea = 2000;  % tuned for ROI scale
+yPredAll_clean = yPredAll;
+yPredAll_clean((yPredAll == 1) &amp; (T.Area &gt; maxTextArea)) = 2;
+
+
+%% 12. Visualization of predicted classes
+propsAll = regionprops(CC, &#x27;BoundingBox&#x27;, &#x27;Centroid&#x27;, &#x27;Area&#x27;);
+
+drawMinArea = 200;
+
+figure; imshow(Iadj); hold on;
+title(&#x27;Figure 18: Predicted classes (Text = green, NonText = red)&#x27;);
+for i = 1:CC.NumObjects
+    if propsAll(i).Area &lt; drawMinArea
+        continue;
+    end
+    bb = propsAll(i).BoundingBox;
+    if yPredAll_clean(i) == 1
+        rectangle(&#x27;Position&#x27;, bb, &#x27;EdgeColor&#x27;, &#x27;g&#x27;, &#x27;LineWidth&#x27;, 0.8);
+    else
+        rectangle(&#x27;Position&#x27;, bb, &#x27;EdgeColor&#x27;, &#x27;r&#x27;, &#x27;LineWidth&#x27;, 0.8);
+    end
+end
+hold off;
+
+figure;
+subplot(1,2,1); imshow(Iadj); title(&#x27;Figure 19a: Predicted TEXT&#x27;); hold on;
+for i = 1:CC.NumObjects
+    if yPredAll_clean(i) == 1 &amp;&amp; propsAll(i).Area &gt;= drawMinArea
+        rectangle(&#x27;Position&#x27;, propsAll(i).BoundingBox, &#x27;EdgeColor&#x27;, &#x27;g&#x27;, &#x27;LineWidth&#x27;, 1);
+    end
+end
+hold off;
+
+subplot(1,2,2); imshow(Iadj); title(&#x27;Figure 19b: Predicted NON-TEXT&#x27;); hold on;
+for i = 1:CC.NumObjects
+    if yPredAll_clean(i) == 2 &amp;&amp; propsAll(i).Area &gt;= drawMinArea
+        rectangle(&#x27;Position&#x27;, propsAll(i).BoundingBox, &#x27;EdgeColor&#x27;, &#x27;r&#x27;, &#x27;LineWidth&#x27;, 1);
+    end
+end
+hold off;
+</code></pre>
+</div>
+
+</div>
+</body>
+</html>
