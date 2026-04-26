@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRIS Testbed | Elisabetta Bettini</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 48px 52px;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.label {
+  display: inline-block;
+  color: var(--purple);
+  background: rgba(124,58,237,0.08);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 44px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 19px;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.section {
+  margin-top: 50px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.line {
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #374151;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+}
+
+.info-card i {
+  color: var(--purple);
+  margin-right: 6px;
+}
+
+.info-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.info-card span {
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tag {
+  background: rgba(124,58,237,0.08);
+  color: var(--purple);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.footer-nav {
+  margin-top: 60px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<a class="back" href="../index.html">← Back to homepage</a>
+
+<div class="label">Structural Dynamics · FEM · Experimental Analysis</div>
+
+<h1>IRIS Testbed — Structural Modeling & Dynamic Characterization</h1>
+
+<div class="subtitle">
+Contribution to the development of high-precision structural models and experimental validation
+activities for next-generation space telescope technologies.
+</div>
+
+<!-- INFO -->
+<div class="info-grid">
+  <div class="info-card">
+    <strong><i class="fa-solid fa-building"></i> Organization</strong>
+    <span>NASA Jet Propulsion Laboratory (JPL)</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-satellite"></i> Program</strong>
+    <span>Habitable Worlds Observatory (HWO)</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-gears"></i> Focus</strong>
+    <span>Structural dynamics & model validation</span>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <h2>Project Overview</h2>
+  <div class="line"></div>
+
+  <p>
+    My work at NASA Jet Propulsion Laboratory (JPL) is part of the development activities for the
+    Habitable Worlds Observatory (HWO), a next-generation space telescope concept aimed at directly
+    imaging and characterizing Earth-like exoplanets.
+  </p>
+
+  <p>
+    Within this context, I contribute to IRIS, a ground-based technological testbed designed to support
+    the development and validation of high-precision optical systems for future space observatories.
+  </p>
+</div>
+
+<!-- WORK -->
+<div class="section">
+  <h2>Technical Contributions</h2>
+  <div class="line"></div>
+
+  <p>
+    My work focuses on the structural dynamics and high-fidelity modeling of precision opto-mechanical
+    systems. I develop finite element models for dynamic characterization, perform modal analysis, and
+    support experimental validation activities.
+  </p>
+
+  <p>
+    This includes correlation between numerical models and experimental data, as well as the development
+    of reduced-order models to support control design and system-level analysis.
+  </p>
+
+  <p>
+    The overall objective is to ensure structural stability and dynamic performance compatible with the
+    stringent requirements of high-contrast imaging systems.
+  </p>
+
+  <div class="tags">
+    <div class="tag">FEM Modeling</div>
+    <div class="tag">Modal Analysis</div>
+    <div class="tag">Experimental Testing</div>
+    <div class="tag">Model Correlation</div>
+    <div class="tag">Reduced Order Models</div>
+  </div>
+</div>
+
+<div class="footer-nav">
+  <a href="../index.html">← Back to homepage</a>
+  <a href="svej.html">Next project →</a>
+</div>
+
+</div>
+
+</body>
+</html>
