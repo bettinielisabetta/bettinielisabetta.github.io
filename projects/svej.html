@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SVEJ Joint | Elisabetta Bettini</title>
@@ -286,6 +287,15 @@ p {
 
 .reference-link i {
   margin-right: 6px;
+}
+
+  .model-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  margin-top: 22px;
 }
 
 @media (max-width: 900px) {
@@ -596,6 +606,28 @@ p {
     Future work includes physical manufacturing, controller design, experimental dynamic testing under
     torsional loading, and experimental identification of silicone damping.
   </p>
+</section>
+
+  <section class="section">
+  <h2>Interactive 3D Assembly</h2>
+  <div class="line"></div>
+
+  <p>
+    Interactive 3D visualization of the SVEJ assembly. The model can be rotated, zoomed, and inspected directly in the browser.
+  </p>
+
+  <div class="model-card">
+    <model-viewer
+      src="../assets/projects/svej/models/svej-assembly.glb"
+      alt="Interactive 3D model of the SVEJ assembly"
+      camera-controls
+      auto-rotate
+      rotation-per-second="20deg"
+      shadow-intensity="0.8"
+      exposure="1"
+      style="width: 100%; height: 520px;">
+    </model-viewer>
+  </div>
 </section>
 
 <div class="footer-nav">
