@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVEJ Joint | Elisabetta Bettini</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1120px;
+  margin: auto;
+  padding: 48px 52px;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 34px;
+}
+
+.label {
+  display: inline-block;
+  color: var(--purple);
+  background: rgba(124,58,237,0.08);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 44px;
+  line-height: 1.08;
+  margin: 0 0 18px;
+  letter-spacing: -0.6px;
+  font-weight: 650;
+}
+
+.subtitle {
+  font-size: 19px;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 850px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 34px 0 48px;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+}
+
+.info-card i {
+  color: var(--purple);
+  margin-right: 8px;
+}
+
+.info-card strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.info-card span {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.section {
+  margin-top: 52px;
+}
+
+h2 {
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.line {
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 24px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #374151;
+}
+
+.hero-image {
+  margin-top: 34px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.hero-image img {
+  width: 100%;
+  display: block;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.step {
+  background: var(--white);
+  border-radius: 15px;
+  padding: 18px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 5px 16px rgba(0,0,0,0.04);
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(124,58,237,0.10);
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.step h3 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.step p {
+  font-size: 14.5px;
+  margin: 0;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.figure-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.figure-card img {
+  width: 100%;
+  display: block;
+  background: white;
+}
+
+.figure-caption {
+  padding: 16px 18px 18px;
+}
+
+.figure-caption strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.figure-caption span {
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tag {
+  background: rgba(124,58,237,0.08);
+  color: var(--purple);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.resource-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(124,58,237,0.12);
+}
+
+.resource-card i {
+  color: var(--purple);
+  margin-right: 8px;
+}
+
+.resource-card span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.footer-nav {
+  margin-top: 58px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .info-grid,
+  .pipeline,
+  .image-grid,
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 34px 24px;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<a class="back" href="../index.html">← Back to homepage</a>
+
+<section class="hero">
+  <div class="label">Mechanism Design · Hyperelastic FEM · Rapid Prototyping</div>
+
+  <h1>Series Visco-Elastic Joint</h1>
+
+  <div class="subtitle">
+    Design of a compact Series Visco-Elastic Joint for a robotic exoskeleton shoulder, integrating
+    a custom toothed silicone elastic element, motor-compatible assembly constraints, and qualitative
+    hyperelastic verification in Ansys Workbench.
+  </div>
+
+  <div class="hero-image">
+    <img src="../assets/projects/svej/cover.png" alt="Series Visco-Elastic Joint design">
+  </div>
+</section>
+
+<div class="info-grid">
+  <div class="info-card">
+    <strong><i class="fa-solid fa-graduation-cap"></i> Context</strong>
+    <span>Mechanical Transducers project — M.Sc. Mechanical Engineering, University of Pisa</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-bullseye"></i> Design Target</strong>
+    <span>Compact SVEJ compatible with AK80-9 T-motor, 9 Nm torque, and approximately 20° maximum angular displacement.</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-screwdriver-wrench"></i> Tools</strong>
+    <span>SolidWorks, Ansys Workbench, Mathcad, rapid prototyping, technical drawings.</span>
+  </div>
+</div>
+
+<section class="section">
+  <h2>Project Overview</h2>
+  <div class="line"></div>
+
+  <p>
+    The project focused on redesigning an existing Series Elastic Actuator concept into a compact
+    Series Visco-Elastic Joint intended for the shoulder joint of a robotic exoskeleton. The reference
+    device used separate silicone blocks placed between toothed internal and external gears; however,
+    this layout generated friction against plastic components and gap formation when only three silicone
+    blocks worked in compression at a time.
+  </p>
+
+  <p>
+    The proposed solution replaces the separated silicone blocks with a single circular toothed silicone
+    element, designed to work both in compression and tension through internal and external teeth.
+    This configuration was introduced to improve control behavior, reduce gap formation, and maintain
+    a compact assembly compatible with the existing motor and encoder hardware.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Design Requirements</h2>
+  <div class="line"></div>
+
+  <div class="pipeline">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Compactness</h3>
+      <p>Reduced radial and axial envelope for integration into an exoskeleton shoulder joint.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Motor Compatibility</h3>
+      <p>Mechanical compatibility with the AK80-9 T-motor and existing encoder components.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Elastic Response</h3>
+      <p>Silicone element sized for 9 Nm torque and limited angular displacement.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Assembly Strategy</h3>
+      <p>SVEJ removable as an independent block from the motor while keeping the joint assembled.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Mechanical Concept</h2>
+  <div class="line"></div>
+
+  <p>
+    The core design choice was the introduction of a single annular silicone element with internal and
+    external teeth. The internal teeth were designed larger than the external teeth because they are
+    directly loaded by the rotor and therefore experience higher stresses. The silicone ring geometry
+    was first estimated with a simplified linear approach, then qualitatively assessed with a nonlinear
+    hyperelastic model.
+  </p>
+
+  <p>
+    Mold Max 60 was selected as the silicone material available in the laboratory. The preliminary sizing
+    was performed by imposing a maximum angular displacement of 20° under a 9 Nm applied torque.
+    The design also included a simplified shear verification of the silicone teeth.
+  </p>
+
+  <div class="tags">
+    <div class="tag">Series Visco-Elastic Joint</div>
+    <div class="tag">Toothed Silicone Ring</div>
+    <div class="tag">Mold Max 60</div>
+    <div class="tag">9 Nm Torque</div>
+    <div class="tag">20° Angular Displacement</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>FEM Verification</h2>
+  <div class="line"></div>
+
+  <p>
+    A qualitative verification was performed in Ansys Workbench using the SolidWorks assembly composed
+    of rotor, silicone element, and external gear. The silicone behavior was modeled using a Neo-Hookean
+    hyperelastic formulation, while the rotor was treated as a rigid body. The external gear was fixed,
+    and a torque was applied to the rotor. Bonded and frictional contacts were used depending on the
+    interface.
+  </p>
+
+  <div class="image-grid">
+    <div class="figure-card">
+      <img src="../assets/projects/svej/ansys-von-mises.png" alt="Ansys Von Mises result">
+      <div class="figure-caption">
+        <strong>Equivalent stress result</strong>
+        <span>Qualitative stress distribution used to inspect the load transfer through the toothed silicone element.</span>
+      </div>
+    </div>
+
+    <div class="figure-card">
+      <img src="../assets/projects/svej/ansys-deformation.png" alt="Ansys deformation result">
+      <div class="figure-caption">
+        <strong>Total deformation result</strong>
+        <span>Deformation field obtained under the applied rotor torque and constrained external gear.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Assembly and Integration</h2>
+  <div class="line"></div>
+
+  <p>
+    The assembly was constrained by the available AK80-9 motor, RM08 encoder, magnet, and encoder holder.
+    The design includes pass-through holes on the shaft and external gear to allow the SVEJ block to be
+    removed from the motor while remaining assembled. The shaft–external gear connection uses six screws
+    and six nuts, with hexagonal nut seats introduced because threading nylon components was not suitable.
+  </p>
+
+  <p>
+    The magnet seat was integrated into the shaft, maintaining a 1 mm distance from the encoder. Bearings
+    are assembled from above and press-fitted on the inner ring, while axial positioning is managed through
+    a spacer and Seeger ring. Two Teflon rings were added on the upper and lower faces of the silicone
+    element to reduce radial rubbing between silicone and nylon.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/svej/assembly-section.png" alt="SVEJ assembly section">
+    <div class="figure-caption">
+      <strong>Assembly section</strong>
+      <span>Section view showing motor-side integration, shaft, bearings, silicone element, encoder, magnet, and Teflon rings.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Manufacturing Strategy</h2>
+  <div class="line"></div>
+
+  <p>
+    The external gear and rotor were designed for nylon rapid prototyping, accounting for the manufacturing
+    limitations of layered fabrication by oversizing holes and accepting general machining tolerances.
+    The shaft was designed in aluminum to achieve tighter tolerances where rolling bearings are mounted.
+    The silicone element is produced using a two-part mold composed of matrix and punch, clamped with four bolts.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Technical Drawings</h2>
+  <div class="line"></div>
+
+  <p>
+    The following links are prepared for the detailed drawings of the main manufactured parts and mold components.
+  </p>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="../assets/projects/svej/drawings/perno.pdf" target="_blank">
+      <strong><i class="fa-solid fa-file-pdf"></i> Perno drawing</strong>
+      <span>Technical drawing of the aluminum shaft / pin component.</span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/svej/drawings/punzone.pdf" target="_blank">
+      <strong><i class="fa-solid fa-file-pdf"></i> Punzone drawing</strong>
+      <span>Technical drawing of the mold punch used for silicone casting.</span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/svej/drawings/matrice-stampo.pdf" target="_blank">
+      <strong><i class="fa-solid fa-file-pdf"></i> Matrice stampo drawing</strong>
+      <span>Technical drawing of the mold matrix for the toothed silicone ring.</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <h2>3D Model Files</h2>
+  <div class="line"></div>
+
+  <p>
+    STL files are provided for visualization of the rapid-prototyped and mold components.
+  </p>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="../assets/projects/svej/stl/matrice.stl" target="_blank">
+      <strong><i class="fa-solid fa-cube"></i> Matrice STL</strong>
+      <span>3D model of the mold matrix.</span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/svej/stl/external-gear.stl" target="_blank">
+      <strong><i class="fa-solid fa-gear"></i> External gear STL</strong>
+      <span>3D model of the link-side external gear.</span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/svej/stl/rotore.stl" target="_blank">
+      <strong><i class="fa-solid fa-rotate"></i> Rotor STL</strong>
+      <span>3D model of the motor-side rotor.</span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/svej/stl/punzone.stl" target="_blank">
+      <strong><i class="fa-solid fa-cube"></i> Punzone STL</strong>
+      <span>3D model of the mold punch.</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Key Outcomes</h2>
+  <div class="line"></div>
+
+  <p>
+    The final concept achieved a compact SVEJ assembly, with the reference documentation reporting an
+    overall diameter of approximately 110 mm, a joint height of 33 mm, and 73.5 mm including the motor.
+    The toothed silicone configuration addresses the gap problem of the previous block-based design,
+    while Teflon rings partially mitigate silicone–nylon friction.
+  </p>
+
+  <p>
+    Future work includes physical manufacturing, controller design, experimental dynamic testing under
+    torsional loading, and experimental identification of silicone damping.
+  </p>
+</section>
+
+<div class="footer-nav">
+  <a href="../index.html">← Back to homepage</a>
+  <a href="image-segmentation.html">Next project →</a>
+</div>
+
+</div>
+
+</body>
+</html>
