@@ -136,6 +136,34 @@ p {
   justify-content: space-between;
 }
 
+  .figure-card {
+  margin-top: 28px;
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.figure-card img {
+  width: 100%;
+  display: block;
+}
+
+.figure-caption {
+  padding: 16px 18px;
+}
+
+.figure-caption strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.figure-caption span {
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
 @media (max-width: 900px) {
   .info-grid {
     grid-template-columns: 1fr;
@@ -192,6 +220,18 @@ activities for next-generation space telescope technologies.
     Within this context, I contribute to IRIS, a ground-based technological testbed designed to support
     the development and validation of high-precision optical systems for future space observatories.
   </p>
+
+  <div class="figure-card">
+  <img src="../assets/projects/telescope/hwo.png" alt="Habitable Worlds Observatory concept">
+  <div class="figure-caption">
+    <strong>Habitable Worlds Observatory (HWO)</strong>
+    <span>
+      Concept of a next-generation space telescope designed to directly image and characterize Earth-like exoplanets.
+      Source: NASA
+    </span>
+  </div>
+</div>
+  
 </div>
 
 <!-- WORK -->
