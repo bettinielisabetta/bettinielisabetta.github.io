@@ -260,7 +260,44 @@ p {
   gap: 20px;
 }
 
+  .resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.resource-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(124,58,237,0.12);
+}
+
+.resource-card i {
+  color: var(--purple);
+  margin-right: 8px;
+}
+
+.resource-card span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
 @media (max-width: 900px) {
+  .resource-grid {
+  grid-template-columns: 1fr;
+}
   .info-grid,
   .pipeline,
   .image-grid,
@@ -520,6 +557,65 @@ p {
   </div>
 </section>
 
+  <section class="section">
+  <h2>Detailed Mechanical Assembly</h2>
+  <div class="line"></div>
+
+  <p>
+    Detailed sectional views were developed to define the mechanical assembly of the main joints,
+    including bearing arrangements, shafts, spacers, retaining elements, encoder integration,
+    and structural interfaces.
+  </p>
+
+  <div class="image-grid">
+
+    <div class="figure-card">
+      <img src="../assets/projects/haptic/detail/actuated-revolute-joints.png" alt="Actuated revolute joints assembly">
+      <div class="figure-caption">
+        <strong>Actuated revolute joints</strong>
+        <span>
+          Assembly of the actuated base joints, including shaft, bearings, actuator rotor support,
+          axial locking, keying elements, and encoder magnet integration.
+        </span>
+      </div>
+    </div>
+
+    <div class="figure-card">
+      <img src="../assets/projects/haptic/detail/passive-revolute-joints.png" alt="Passive revolute joints assembly">
+      <div class="figure-caption">
+        <strong>Passive revolute joints</strong>
+        <span>
+          Bearing-supported passive joint configuration, with shaft-link connection, spacers,
+          shoulders, and retaining elements for axial positioning.
+        </span>
+      </div>
+    </div>
+
+    <div class="figure-card">
+      <img src="../assets/projects/haptic/detail/end-effector-joint.png" alt="End-effector joint assembly">
+      <div class="figure-caption">
+        <strong>End-effector joint</strong>
+        <span>
+          Joint connecting the five-bar linkage to the linear actuator support, using bearing pairs,
+          retaining rings, encoder magnet placement, and a mechanical stop strategy.
+        </span>
+      </div>
+    </div>
+
+    <div class="figure-card">
+      <img src="../assets/projects/haptic/detail/2r-joint.png" alt="2R joint assembly">
+      <div class="figure-caption">
+        <strong>2R joint</strong>
+        <span>
+          Two-rotation wrist-like joint based on fork elements and bearing-supported pins,
+          used to complete the probe orientation degrees of freedom.
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section class="section">
   <h2>Key Technical Elements</h2>
   <div class="line"></div>
@@ -537,6 +633,36 @@ p {
     <div class="tag">Actuator Sizing</div>
     <div class="tag">MATLAB</div>
     <div class="tag">PTC Creo</div>
+  </div>
+</section>
+
+  <section class="section">
+  <h2>MATLAB Implementation</h2>
+  <div class="line"></div>
+
+  <p>
+    MATLAB scripts were developed to support the kinematic and kinetostatic analysis of the haptic
+    interface, including workspace and singularity mapping, as well as joint torque evaluation under
+    different loading directions.
+  </p>
+
+  <div class="resource-grid">
+
+    <a class="resource-card" href="../assets/projects/haptic/code/workspace-singularities.html">
+      <strong><i class="fa-solid fa-code"></i> Workspace & Singularities Plot</strong>
+      <span>
+        MATLAB implementation used to compute the five-bar linkage workspace and identify singular
+        configurations.
+      </span>
+    </a>
+
+    <a class="resource-card" href="../assets/projects/haptic/code/joint-torque.html">
+      <strong><i class="fa-solid fa-code"></i> Joint Torque Plot</strong>
+      <span>
+        MATLAB implementation used for kinetostatic joint torque evaluation and actuator sizing.
+      </span>
+    </a>
+
   </div>
 </section>
 
