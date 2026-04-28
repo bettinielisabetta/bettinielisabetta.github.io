@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haptic Interface | Elisabetta Bettini</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1120px;
+  margin: auto;
+  padding: 48px 52px;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 34px;
+}
+
+.label {
+  display: inline-block;
+  color: var(--purple);
+  background: rgba(124,58,237,0.08);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 44px;
+  line-height: 1.08;
+  margin: 0 0 18px;
+  letter-spacing: -0.6px;
+  font-weight: 650;
+}
+
+.subtitle {
+  font-size: 19px;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 850px;
+}
+
+.hero-image {
+  margin-top: 34px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.hero-image img {
+  width: 100%;
+  display: block;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 34px 0 48px;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+}
+
+.info-card i {
+  color: var(--purple);
+  margin-right: 8px;
+}
+
+.info-card strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.info-card span {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.section {
+  margin-top: 52px;
+}
+
+h2 {
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.line {
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 24px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #374151;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.step {
+  background: var(--white);
+  border-radius: 15px;
+  padding: 18px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 5px 16px rgba(0,0,0,0.04);
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(124,58,237,0.10);
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.step h3 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.step p {
+  font-size: 14.5px;
+  margin: 0;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.figure-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.figure-card img {
+  width: 100%;
+  display: block;
+  background: white;
+}
+
+.figure-caption {
+  padding: 16px 18px 18px;
+}
+
+.figure-caption strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.figure-caption span {
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tag {
+  background: rgba(124,58,237,0.08);
+  color: var(--purple);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.outcome-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.outcome {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(124,58,237,0.10);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+}
+
+.outcome i {
+  color: var(--purple);
+  margin-right: 8px;
+}
+
+.outcome strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.outcome span {
+  color: #374151;
+  line-height: 1.5;
+  font-size: 15.5px;
+}
+
+.footer-nav {
+  margin-top: 58px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .info-grid,
+  .pipeline,
+  .image-grid,
+  .outcome-list {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 34px 24px;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<a class="back" href="../index.html">← Back to homepage</a>
+
+<section class="hero">
+  <div class="label">Haptics · Mechanism Design · Teleoperation</div>
+
+  <h1>Haptic Interface for Remote Ultrasound Examination</h1>
+
+  <div class="subtitle">
+    Master’s thesis project focused on the conceptual and mechanical design of a haptic master interface
+    for bilateral teleoperation in robotic tele-echography.
+  </div>
+
+  <div class="hero-image">
+    <img src="../assets/projects/haptic/cover.png" alt="Haptic interface project cover">
+  </div>
+</section>
+
+<div class="info-grid">
+  <div class="info-card">
+    <strong><i class="fa-solid fa-graduation-cap"></i> Context</strong>
+    <span>M.Sc. Mechanical Engineering thesis — University of Pisa / PERCRO Lab, Scuola Superiore Sant’Anna</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-bullseye"></i> Goal</strong>
+    <span>Design a mechanical haptic master interface for tele-echography with force feedback.</span>
+  </div>
+
+  <div class="info-card">
+    <strong><i class="fa-solid fa-screwdriver-wrench"></i> Tools</strong>
+    <span>MATLAB, PTC Creo, mechanism design, kinetostatic analysis, actuator sizing.</span>
+  </div>
+</div>
+
+<section class="section">
+  <h2>Project Overview</h2>
+  <div class="line"></div>
+
+  <p>
+    This thesis was developed within the framework of the “THE Tuscany Health Ecosystem —
+    Robotics and Automation for Health” project, with Scuola Superiore Sant’Anna as a partner.
+    The work focused on the study and design of a new haptic master interface for tele-echography,
+    intended to support the remote execution of ultrasound examinations.
+  </p>
+
+  <p>
+    The objective was to design a master-side robotic interface capable of reproducing the usual
+    probe motions performed by a radiologist, while enabling bilateral teleoperation with force
+    feedback to make the remote examination more consistent with in-person ultrasound procedures.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Design Requirements</h2>
+  <div class="line"></div>
+
+  <p>
+    The design process started from the analysis of the ultrasound task. Main diagnostic procedures
+    were considered to identify the required workspace, while anthropometric data and literature on
+    probe–patient interaction were used to define mechanical requirements. A maximum force of 35 N
+    along the probe axis was adopted as a reference load case for the design.
+  </p>
+
+  <p>
+    The interface was required to provide consistent force feedback, allow natural movements for the
+    radiologist, reproduce the examination as faithfully as possible, and maintain high transparency
+    through reduced inertia, low friction, and sufficient structural stiffness.
+  </p>
+</section>
+
+<section class="section">
+  <h2>System Concept</h2>
+  <div class="line"></div>
+
+  <p>
+    A two-stage master system was proposed. The first stage is a positioning arm used to perform
+    large-scale motions and place the haptic interface near the anatomical region of interest. Once
+    positioned, the arm is locked, and fine probe motions are performed using the haptic interface.
+  </p>
+
+  <p>
+    This architecture reduces the required workspace of the active haptic interface, limiting overall
+    size, mass, inertia, and encumbrance. The final concept combines a hybrid 2R + 1P positioning arm
+    with a haptic interface based on a five-bar linkage, a prismatic joint, and a spherical joint.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/haptic/concept.png" alt="Haptic interface system concept">
+    <div class="figure-caption">
+      <strong>Master system concept</strong>
+      <span>Two-stage architecture combining gross positioning and fine haptic probe manipulation.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Engineering Workflow</h2>
+  <div class="line"></div>
+
+  <div class="pipeline">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Task Analysis</h3>
+      <p>Definition of required ultrasound procedures, workspace, and probe–patient load conditions.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Concept Design</h3>
+      <p>Selection of a two-stage architecture with positioning arm and haptic interface.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Kinematics</h3>
+      <p>Five-bar linkage synthesis, workspace analysis, and singularity evaluation.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Actuation</h3>
+      <p>Kinetostatic modeling and actuator sizing under worst-case force conditions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Five-Bar Linkage Design</h2>
+  <div class="line"></div>
+
+  <p>
+    The core of the haptic interface is a five-bar linkage, a two-degree-of-freedom parallel robot.
+    The linkage was selected to provide planar motion with compact geometry and good mechanical
+    transparency. The desired local workspace for fine probe manipulation was defined as approximately
+    100 mm × 100 mm × 120 mm.
+  </p>
+
+  <p>
+    The mechanism geometry was studied through forward kinematics and workspace analysis. Link lengths
+    were selected to obtain the required workspace while keeping the mechanism compact. The final
+    five-bar linkage dimensions were selected to operate within a safe region away from internal
+    singularities.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/haptic/five-bar.png" alt="Five-bar linkage design">
+    <div class="figure-caption">
+      <strong>Five-bar linkage architecture</strong>
+      <span>Parallel mechanism used to generate planar motion of the haptic interface end-effector.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Singularity Analysis</h2>
+  <div class="line"></div>
+
+  <p>
+    The singularity analysis was based on the velocity relationship between the actuated joint angles
+    and the end-effector velocity. Two Jacobian matrices were considered, allowing the identification
+    of type-I singularities on the workspace boundary and type-II singularities inside the workspace.
+  </p>
+
+  <p>
+    Since type-II singularities can compromise controllability inside the operating region, the design
+    was constrained to a conservative rectangular workspace located away from singular configurations.
+    MATLAB was used to map the workspace and evaluate singularity regions for different geometric
+    configurations.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/haptic/singularity-analysis.png" alt="Singularity analysis">
+    <div class="figure-caption">
+      <strong>Workspace and singularity analysis</strong>
+      <span>MATLAB-based evaluation of safe operating regions for the five-bar linkage.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Actuator Sizing</h2>
+  <div class="line"></div>
+
+  <p>
+    The actuator sizing was performed through a kinetostatic analysis of the parallel manipulator.
+    A maximum force of 35 N, applied in a generic direction parallel to the support plane, was considered
+    at the end-effector. The corresponding joint torques were computed over the possible postures within
+    the workspace.
+  </p>
+
+  <p>
+    The analysis was implemented in MATLAB by solving the static equilibrium equations for different
+    force orientations and robot configurations. The maximum required torques at the actuated joints were
+    then used to select suitable actuation components.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/haptic/actuator-sizing.png" alt="Actuator sizing results">
+    <div class="figure-caption">
+      <strong>Actuator sizing analysis</strong>
+      <span>MATLAB-based computation of torque requirements for the actuated joints.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Mechanical Design</h2>
+  <div class="line"></div>
+
+  <p>
+    The final interface combines a five-bar linkage with a prismatic joint and a spherical joint,
+    enabling six-degree-of-freedom interaction at the probe handle. The design choices were oriented
+    toward mechanical simplicity, stiffness, transparency, and reduced friction.
+  </p>
+
+  <p>
+    The mechanical design included link sizing, joint architecture, actuator and sensor integration,
+    and CAD modeling of the system. The five-bar links were designed using aluminum square tubular
+    profiles, while the prismatic and spherical joint architecture was developed to reproduce the
+    probe manipulation task.
+  </p>
+
+  <div class="figure-card">
+    <img src="../assets/projects/haptic/prototype.png" alt="Haptic interface mechanical design">
+    <div class="figure-caption">
+      <strong>Mechanical design</strong>
+      <span>CAD-level development of the haptic interface and its mechanical subassemblies.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Key Technical Elements</h2>
+  <div class="line"></div>
+
+  <div class="tags">
+    <div class="tag">Teleoperation</div>
+    <div class="tag">Tele-echography</div>
+    <div class="tag">Haptic Interface</div>
+    <div class="tag">Five-Bar Linkage</div>
+    <div class="tag">Prismatic Joint</div>
+    <div class="tag">Spherical Joint</div>
+    <div class="tag">Workspace Analysis</div>
+    <div class="tag">Singularity Analysis</div>
+    <div class="tag">Kinetostatic Modeling</div>
+    <div class="tag">Actuator Sizing</div>
+    <div class="tag">MATLAB</div>
+    <div class="tag">PTC Creo</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Key Outcomes</h2>
+  <div class="line"></div>
+
+  <div class="outcome-list">
+    <div class="outcome">
+      <strong><i class="fa-solid fa-check"></i> Task-driven architecture</strong>
+      <span>The system concept was derived from the specific motions and force requirements of ultrasound examination.</span>
+    </div>
+
+    <div class="outcome">
+      <strong><i class="fa-solid fa-check"></i> Reduced active workspace</strong>
+      <span>The two-stage concept reduces the size and inertia of the active haptic interface by separating gross and fine motion.</span>
+    </div>
+
+    <div class="outcome">
+      <strong><i class="fa-solid fa-check"></i> Safe kinematic region</strong>
+      <span>Workspace and singularity analysis informed the selection of a conservative operating region.</span>
+    </div>
+
+    <div class="outcome">
+      <strong><i class="fa-solid fa-check"></i> Actuator sizing</strong>
+      <span>Kinetostatic analysis provided torque requirements for the actuated joints under worst-case loading.</span>
+    </div>
+  </div>
+</section>
+
+<div class="footer-nav">
+  <a href="../index.html">← Back to homepage</a>
+  <a href="svej.html">Next project →</a>
+</div>
+
+</div>
+
+</body>
+</html>
