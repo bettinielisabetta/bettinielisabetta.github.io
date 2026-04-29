@@ -1,1 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joint Torque MATLAB Code</title>
 
+<style>
+:root {
+  --text: #0f172a;
+  --muted: #6b7280;
+  --purple: #7c3aed;
+  --line: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f0ff 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1150px;
+  margin: auto;
+  padding: 48px 52px;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 38px;
+  margin: 30px 0 12px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.code-box {
+  margin-top: 30px;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  overflow-x: auto;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+pre {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<a href="../../../projects/haptic.html">← Back to Haptic Interface project</a>
+
+<h1>Joint Torque Plot</h1>
+
+<div class="subtitle">
+  MATLAB implementation used for kinetostatic joint torque evaluation and actuator sizing of the five-bar linkage.
+</div>
+
+<div class="code-box">
+<pre><code>clear; close all; clc
+
+la = 140;
+lb = 180;
+lc = 120;
+
+Wy1 = [];
+Wy2 = [];
+Wy3 = [];
+
+C = [];
+W1 = [];
+W2 = [];
+
+W_L = [];
+W_P = [];
+W_W = [];
+W_S = [];
+Singul = [];
+
+for teta1 = (0):(pi/100):(2*pi)
+    for teta4 = (0):(pi/100):(2*pi)
+
+        sol_W = zeros(2,2);
+        sol_S = zeros(8,1);
+        singul = zeros(6,1);
+
+        [sol_C, sol_L, sol_P, sol_W, sol_S, singul] = ...
+            endeffectorpositionsingnew([la, lb, lc, teta1, teta4]);
+
+        C = [C; sol_C];
+        W_L = [W_L, sol_L];
+        W_P = [W_P, sol_P];
+        W_W = [W_W, sol_W];
+        W_S = [W_S, sol_S];
+        Singul = [Singul, singul];
+
+        if (sol_W(1,1) &gt; 0) &amp;&amp; (sol_W(1,1) &lt; 120) &amp;&amp; ...
+           (sol_W(2,1) &gt; 120) &amp;&amp; (sol_W(2,1) &lt; 220)
+
+            [sol_T] = tau([
+                la, lb, lc, ...
+                teta1, teta4, ...
+                sol_C(1,3), sol_C(1,7), sol_C(1,4), sol_C(1,8)
+            ]);
+
+            w1 = [sol_W(1,1), sol_W(2,1), sol_T];
+            W1 = [W1; w1];
+
+        end
+
+        % Second configuration
+        % if (sol_W(1,2) &gt; 0) &amp;&amp; (sol_W(1,2) &lt; 120) &amp;&amp; ...
+        %    (sol_W(2,2) &gt; 120) &amp;&amp; (sol_W(2,2) &lt; 220)
+        %
+        %     [sol_T] = tau([
+        %         la, lb, lc, ...
+        %         teta1, teta4, ...
+        %         sol_C(1,3), sol_C(1,7), sol_C(1,4), sol_C(1,8)
+        %     ]);
+        %
+        %     w2 = [sol_W(1,2), sol_W(2,2), sol_T(1,2)];
+        %     W2 = [W2; w2];
+        % end
+
+        % Data for curve plots
+        if (sol_W(1,1) &gt; 0) &amp;&amp; (sol_W(1,1) &lt; 120) &amp;&amp; ...
+           (sol_W(2,1) &gt; 120) &amp;&amp; (sol_W(2,1) &lt; 130)
+
+            [sol_T] = tau([
+                la, lb, lc, ...
+                teta1, teta4, ...
+                sol_C(1,3), sol_C(1,7), sol_C(1,4), sol_C(1,8)
+            ]);
+
+            wy1 = [sol_W(1,1), sol_W(2,1), sol_T];
+            Wy1 = [Wy1; wy1];
+
+        end
+
+        if (sol_W(1,1) &gt; 0) &amp;&amp; (sol_W(1,1) &lt; 120) &amp;&amp; ...
+           (sol_W(2,1) &gt; 140) &amp;&amp; (sol_W(2,1) &lt; 150)
+
+            [sol_T] = tau([
+                la, lb, lc, ...
+                teta1, teta4, ...
+                sol_C(1,3), sol_C(1,7), sol_C(1,4), sol_C(1,8)
+            ]);
+
+            wy2 = [sol_W(1,1), sol_W(2,1), sol_T];
+            Wy2 = [Wy2; wy2];
+
+        end
+
+        if (sol_W(1,1) &gt; 0) &amp;&amp; (sol_W(1,1) &lt; 120) &amp;&amp; ...
+           (sol_W(2,1) &gt; 160) &amp;&amp; (sol_W(2,1) &lt; 170)
+
+            [sol_T] = tau([
+                la, lb, lc, ...
+                teta1, teta4, ...
+                sol_C(1,3), sol_C(1,7), sol_C(1,4), sol_C(1,8)
+            ]);
+
+            wy3 = [sol_W(1,1), sol_W(2,1), sol_T];
+            Wy3 = [Wy3; wy3];
+
+        end
+
+    end
+end
+
+
+%% CURVE
+
+f = fit(Wy1(:,1), Wy1(:,3), 'poly2');
+plot(f, 'r');
+hold on
+
+g = fit(Wy1(:,1), Wy1(:,4), 'poly2');
+plot(g, 'r');
+hold on
+
+h = fit(Wy2(:,1), Wy2(:,3), 'poly2');
+plot(h, 'b');
+hold on
+
+k = fit(Wy2(:,1), Wy2(:,4), 'poly2');
+plot(k, 'b');
+hold on
+
+l = fit(Wy3(:,1), Wy3(:,3), 'poly2');
+plot(l, 'g');
+hold on
+
+m = fit(Wy3(:,1), Wy3(:,4), 'poly2');
+plot(m, 'g');
+
+
+%% FIGURE SURFACE PLOT
+
+figure
+plot3(W1(:,1), W1(:,2), W1(:,3), ".", 'color', 'b');
+hold on
+
+plot3(W1(:,1), W1(:,2), W1(:,4), ".", 'color', 'r');
+hold on
+
+sf1 = fit([W1(:,1), W1(:,2)], W1(:,3), 'poly23');
+plot(sf1, [W1(:,1), W1(:,2)], W1(:,3));
+colormap jet;
+hold on
+
+sf4 = fit([W1(:,1), W1(:,2)], W1(:,4), 'poly23');
+plot(sf4, [W1(:,1), W1(:,2)], W1(:,4));
+colormap jet;
+
+
+%% FUNCTION
+
+function [out_T] = tau(in)
+
+    la = in(1);
+    lb = in(2);
+    lc = in(3);
+    teta1 = in(4);
+    teta4 = in(5);
+    teta2_1 = in(6);
+    teta2_2 = in(7);
+    teta3_1 = in(8);
+    teta3_2 = in(9);
+
+    c4 = cos(teta4);
+    s4 = sin(teta4);
+    c1 = cos(teta1);
+    s1 = sin(teta1);
+
+    s12_1 = sin(teta1 + teta2_1);
+    s12_2 = sin(teta1 + teta2_2);
+    c12_1 = cos(teta1 + teta2_1);
+    c12_2 = cos(teta1 + teta2_2);
+
+    s34_1 = sin(teta4 + teta3_1);
+    s34_2 = sin(teta4 + teta3_2);
+    c34_1 = cos(teta4 + teta3_1);
+    c34_2 = cos(teta4 + teta3_2);
+
+    T = [];
+    T_tot = [];
+    F_tot = [];
+
+    alpha = pi/4;
+    F = 35;
+
+    teta21 = 2*pi - (teta1 - teta2_1);
+    teta22 = 2*pi - (teta1 - teta2_2);
+
+    teta31 = teta3_1 - teta4;
+    teta32 = teta3_2 - teta4;
+
+    s121 = sin(teta1 + teta21);
+    s122 = sin(teta1 + teta22);
+    c121 = cos(teta1 + teta21);
+    c122 = cos(teta1 + teta22);
+
+    s341 = sin(teta4 + teta31);
+    s342 = sin(teta4 + teta32);
+    c341 = cos(teta4 + teta31);
+    c342 = cos(teta4 + teta32);
+
+    fx1_1 = (cot(teta1 + teta21)) * F * ...
+            ((cos(alpha) - sin(alpha) * (cot(teta31 + teta4))) / ...
+            ((cot(teta31 + teta4)) - (cot(teta1 + teta21))));
+
+    fy1_1 = F * ...
+            ((cos(alpha) - sin(alpha) * (cot(teta31 + teta4))) / ...
+            ((cot(teta31 + teta4)) - (cot(teta1 + teta21))));
+
+    fx2_1 = (cot(teta31 + teta4)) * F * ...
+            ((-cos(alpha) + sin(alpha) * (cot(teta1 + teta21))) / ...
+            ((cot(teta31 + teta4)) - (cot(teta1 + teta21))));
+
+    fy2_1 = F * ...
+            ((-cos(alpha) + sin(alpha) * (cot(teta1 + teta21))) / ...
+            ((cot(teta31 + teta4)) - (cot(teta1 + teta21))));
+
+    tau1_1 = F * ...
+             ((cos(alpha) - sin(alpha) * (cot(teta31 + teta4))) / ...
+             ((cot(teta31 + teta4)) - (cot(teta1 + teta21)))) * ...
+             (la * c1 + lb * c121 - ...
+             (la * s1 + lb * s121) * (cot(teta1 + teta21)));
+
+    tau4_1 = F * ...
+             ((-cos(alpha) + sin(alpha) * (cot(teta1 + teta21))) / ...
+             ((cot(teta31 + teta4)) - (cot(teta1 + teta21)))) * ...
+             ((cot(teta31 + teta4)) * (-lb * s341 - la * s4) + ...
+             lb * c341 + la * c4);
+
+    T(1,1) = tau1_1;
+    T(1,2) = tau4_1;
+
+    out_T = T;
+
+end
+</code></pre>
+</div>
+
+</div>
+
+</body>
+</html>
